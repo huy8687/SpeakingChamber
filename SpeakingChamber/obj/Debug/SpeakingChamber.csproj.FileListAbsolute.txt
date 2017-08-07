@@ -1,0 +1,14 @@
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\bin\Debug\SpeakingChamber.exe
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\bin\Debug\SpeakingChamber.pdb
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber.csprojResolveAssemblyReference.cache
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\MainWindow.g.cs
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\App.g.cs
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber_MarkupCompile.cache
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber_MarkupCompile.lref
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\MainWindow.baml
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber.g.resources
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber.Properties.Resources.resources
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber.csproj.GenerateResource.Cache
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber.exe
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\obj\Debug\SpeakingChamber.pdb
+C:\Users\huybuidac\Documents\Projects\SpeakingChamber\SpeakingChamber\bin\Debug\SpeakingChamber.exe.config
