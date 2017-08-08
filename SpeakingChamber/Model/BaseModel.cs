@@ -7,7 +7,7 @@ using System.Text;
 namespace SpeakingChamber.Model
 {
     [AddINotifyPropertyChangedInterface]
-    abstract class BaesModel
+    public abstract class BaseModel
     {
     }
 }
