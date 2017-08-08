@@ -9,6 +9,5 @@
     Title="OpeningPage">
 
     <Grid x:Name="huy">
-        
     </Grid>
 </local:BasePage>

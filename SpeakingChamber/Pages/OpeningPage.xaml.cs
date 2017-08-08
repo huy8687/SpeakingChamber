@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
@@ -19,7 +13,7 @@ namespace SpeakingChamber.Pages
     /// <summary>
     /// Interaction logic for OpeningPage.xaml
     /// </summary>
-    public partial class OpeningPage : BasePage
+    public partial class OpeningPage
     {
         public OpeningPage()
         {
