@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
 {
     /// <summary>
     /// Interaction logic for SettingPasswordPage.xaml
     /// </summary>
-    public partial class SettingPasswordPage : Page
+    public partial class SettingPasswordPage : BasePage
     {
         public SettingPasswordPage()
         {
             InitializeComponent();
+            ViewModel = new SettingPasswordViewModel();
         }
     }
 }

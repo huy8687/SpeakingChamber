@@ -74,7 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\BaseContentPage.cs" />
+    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\MicCheckingPage.xaml.cs">
       <DependentUpon>MicCheckingPage.xaml</DependentUpon>
     </Compile>

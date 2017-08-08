@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
 {
     /// <summary>
     /// Interaction logic for TestFinishingPage.xaml
     /// </summary>
-    public partial class TestFinishingPage : Page
+    public partial class TestFinishingPage : BasePage
     {
         public TestFinishingPage()
         {
             InitializeComponent();
+            ViewModel = new TestFinishingViewModel();
         }
     }
 }

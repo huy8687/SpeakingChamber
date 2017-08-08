@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
 {
     /// <summary>
     /// Interaction logic for OpeningPage.xaml
     /// </summary>
-    public partial class OpeningPage : Page
+    public partial class OpeningPage : BasePage
     {
         public OpeningPage()
         {
             InitializeComponent();
+            ViewModel = new OpeningViewModel();
         }
     }
 }

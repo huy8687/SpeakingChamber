@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
 {
@@ -23,7 +24,7 @@ namespace SpeakingChamber.Pages
         public MicCheckingPage()
         {
             InitializeComponent();
-            //ViewModel = new MicCheckingViewModel();
+            ViewModel = new MicCheckingViewModel();
         }
     }
 }
