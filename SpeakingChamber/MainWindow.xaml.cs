@@ -23,7 +23,7 @@ namespace SpeakingChamber
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new OpeningPage();
+            MainFrame.Content = new MicCheckingPage();
         }
     }
 }

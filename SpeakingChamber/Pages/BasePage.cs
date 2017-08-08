@@ -8,7 +8,7 @@ using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
 {
-    public class BasePage : Page
+    public abstract class BasePage : Page
     {
         private BaseViewModel _viewModel;
 
@@ -24,7 +24,18 @@ namespace SpeakingChamber.Pages
 
         public BasePage()
         {
+            Loaded += BasePage_Loaded;
+            Unloaded += BasePage_Unloaded;
         }
 
+        private void BasePage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ViewModel.Appearing();
+        }
+
+        private void BasePage_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ViewModel.Disappearing();
+        }
     }
 }

@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeakingChamber"
         mc:Ignorable="d"
-        Title="MainWindow" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" WindowState="Maximized" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner" AllowDrop="True">
+        Title="MainWindow" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner" AllowDrop="True">
     <Frame x:Name="MainFrame"/>
 </Window>

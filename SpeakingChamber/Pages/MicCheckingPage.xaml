@@ -9,8 +9,22 @@
     d:DesignHeight="300" d:DesignWidth="300"
     Title="MicCheckingPage">
 
-    <Grid>
-
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="PLease check your microphone"/>
+        <TextBlock Text="First, please say something to the microphone, then click 'Complete' button"/>
+        <ListBox ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ProductName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Complete" Command="{Binding CmdComplete}" IsEnabled="{Binding EnableComplete}"/>
+        <StackPanel Visibility="{Binding VisibleConfirm}">
+            <TextBlock Text="Now, we are playing back your voice... Could you hear that"/>
+            <Button Content="Yes, proceed to Testing" Command="{Binding CmdYes}" />
+            <Button Content="No" Command="{Binding CmdNo}"/>
+        </StackPanel>
+    </StackPanel>
 </local:BasePage>
 
