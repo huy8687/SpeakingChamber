@@ -1,0 +1,70 @@
+<tests>
+  <test>
+    <code>001</code>
+    <parts>
+      <part>
+        <name>Part I: INTERVIEW</name>
+        <questions>
+          <question>
+             <video>question1.mp4</video>
+             <content>How have games changed from the time when you were a child?</content>
+             <duration>60</duration>
+          </question>
+          <question>
+             <video>question2.mp4</video>
+             <content>Do you think this has been a positive change?</content>
+             <duration>90</duration>
+          </question>
+        </questions>
+      </part>
+      <part>
+        <name>Part 2: CUE CARD</name>
+        <questions>
+          <question>
+             <content>Describe a performance you enjoyed watching</content>
+             <guide>You should say:
+What the performance was
+Where you saw it
+What you thought of the performance
+And explain what was special about the performance.</guide>
+             <duration>150</duration>
+          </question>
+        </questions>
+      </part>
+    </parts>
+  </test>
+  <test>
+    <code>002</code>
+    <parts>
+      <part>
+        <name>Part I: INTERVIEW2</name>
+        <questions>
+          <question>
+             <video>question1.mp4</video>
+             <content>How have games changed from the time when you were a child?</content>
+             <duration>60</duration>
+          </question>
+          <question>
+             <video>question2.mp4</video>
+             <content>Do you think this has been a positive change?</content>
+             <duration>90</duration>
+          </question>
+        </questions>
+      </part>
+      <part>
+        <name>Part 2: CUE CARD2</name>
+        <questions>
+          <question>
+             <content>Describe a performance you enjoyed watching</content>
+             <guide>You should say:
+What the performance was
+Where you saw it
+What you thought of the performance
+And explain what was special about the performance.</guide>
+             <duration>150</duration>
+          </question>
+        </questions>
+      </part>
+    </parts>
+  </test>
+</tests>

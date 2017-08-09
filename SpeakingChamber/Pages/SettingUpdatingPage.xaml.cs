@@ -24,7 +24,7 @@ namespace SpeakingChamber.Pages
         public SettingUpdatingPage()
         {
             InitializeComponent();
-            ViewModel = new SettingPasswordViewModel();
+            ViewModel = new SettingUpdatingViewModel();
         }
     }
 }

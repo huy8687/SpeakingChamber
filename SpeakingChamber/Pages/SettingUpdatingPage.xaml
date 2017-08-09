@@ -42,8 +42,8 @@
             <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding NetworkPath}"/>
             <TextBlock  Grid.Row="5" Grid.Column="0" Text="to save recorded file" FontSize="8"/>
 
-            <Button Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Center" Content="Save Settings" Margin="20,0,20,0"/>
-            <Button Grid.Row="6" Grid.Column="2" Content="Cancel"/>
+            <Button Grid.Row="6" Grid.Column="1" Content="Save Settings" Command="{Binding CmdSave}" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
+            <Button Grid.Row="6" Grid.Column="2" Content="Cancel" Command="{Binding CmdCancel}"/>
         </Grid>
     </StackPanel>
 </local:BasePage>

@@ -8,6 +8,8 @@
     d:DesignHeight="300" d:DesignWidth="300"
     Title="OpeningPage">
 
-    <Grid x:Name="huy">
-    </Grid>
+    <StackPanel HorizontalAlignment="Center">
+        <Image Width="300" Source="/SpeakingChamber;component/Resources/logo.png" Stretch="UniformToFill"/>
+        <TextBlock Text="Speaking Chamber" FontSize="30" HorizontalAlignment="Center"/>
+    </StackPanel>
 </local:BasePage>

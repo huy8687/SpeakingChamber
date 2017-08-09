@@ -1,4 +1,5 @@
-﻿using SpeakingChamber.Pages;
+﻿using SpeakingChamber.Model;
+using SpeakingChamber.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace SpeakingChamber
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new MicCheckingPage();
+            DataMaster.LoadData();
+            MainFrame.Content = new OpeningPage();
         }
     }
 }
