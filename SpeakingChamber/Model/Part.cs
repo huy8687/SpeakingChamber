@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SpeakingChamber.Model
 {
-    public class Test : BaseModel
+    public class Part : BaseModel
     {
-        public string Code { get; set; }
-        public IList<Part> Parts { get; set; }
+        public string Name { get; set; }
+        public IList<Question> Questions { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpeakingChamber.Model
 {
-    class SpeakingSetting : BaseModel
+    public class SpeakingSetting : BaseModel
     {
         public string OnlineUrl { get; set; }
         public string LocalPath { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,22 +18,36 @@ namespace SpeakingChamber.ViewModel
         public bool EnableComplete { get; set; } = true;
 
         public Visibility VisibleConfirm => EnableComplete ? Visibility.Hidden : Visibility.Visible;
-        public Visibility VisibleInputSource => (InputSources != null && InputSources.Count > 0) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility VisibleInputSource => (InputSources != null && InputSources.Count > 1) ? Visibility.Visible : Visibility.Hidden;
+
+        private WaveFileReader _waveReader;
+        private WaveChannel32 _waveChanel;
+        private WaveIn _inputStream;
+        private DirectSoundOut _waveOut;
+        private WaveFileWriter _waveWriter;
 
         public ICommand CmdComplete => new Command(() =>
         {
-            // TODO: logic complete
             EnableComplete = false;
+
+            ReleaseResource();
+
+            _waveReader = new WaveFileReader("sample.wav");
+            _waveChanel = new WaveChannel32(_waveReader) { PadWithZeroes = false };
+            _waveOut = new DirectSoundOut();
+            _waveOut.Init(_waveChanel);
+            _waveOut.PlaybackStopped += WaveOutOnPlaybackStopped;
+            _waveOut.Play();
         });
 
         public ICommand CmdYes => new Command(() =>
         {
-
+            // TODO goto Test screen
         });
 
         public ICommand CmdNo => new Command(() =>
         {
-
+            // TODO goto home screen
         });
 
         public override async Task Appearing()
@@ -43,9 +58,12 @@ namespace SpeakingChamber.ViewModel
             {
                 temp.Add(WaveIn.GetCapabilities(i));
             }
-            temp.Add(new WaveInCapabilities() { });
             InputSources = temp;
-            if (temp.Any())
+            if (temp.Count == 0)
+            {
+                OpenMicFailedPage();
+            }
+            else if (temp.Count == 1)
             {
                 SelectedInput = InputSources[0];
             }
@@ -54,6 +72,81 @@ namespace SpeakingChamber.ViewModel
         public override async Task Disappearing()
         {
             await base.Disappearing();
+            ReleaseResource();
+        }
+
+        public void OnSelectedInputChanged()
+        {
+            var devNumber = InputSources.IndexOf(SelectedInput);
+            InputSources = null;
+
+            ReleaseResource();
+
+            _inputStream = new WaveIn
+            {
+                DeviceNumber = devNumber,
+                WaveFormat = new WaveFormat(44100, SelectedInput.Channels)
+            };
+            _inputStream.DataAvailable += InputStreamOnDataAvailable;
+            _waveWriter = new WaveFileWriter("sample.wav", _inputStream.WaveFormat);
+            _inputStream.StartRecording();
+        }
+
+        private void InputStreamOnDataAvailable(object sender, WaveInEventArgs e)
+        {
+            if (_waveWriter == null) return;
+            try
+            {
+                _waveWriter.Write(e.Buffer, 0, e.BytesRecorded);
+                _waveWriter.Flush();
+            }
+            catch (Exception)
+            {
+                OpenMicFailedPage();
+            }
+        }
+
+        private void OpenMicFailedPage()
+        {
+            ReleaseResource();
+            // TODO: goto error screen
+        }
+
+        private void WaveOutOnPlaybackStopped(object sender, StoppedEventArgs stoppedEventArgs)
+        {
+            ReleaseResource();
+        }
+
+        private void ReleaseResource()
+        {
+            if (_waveWriter != null)
+            {
+                _waveWriter.Close();
+                _waveWriter.Dispose();
+                _waveWriter = null;
+            }
+            if (_inputStream != null)
+            {
+                _inputStream.StopRecording();
+                _inputStream.DataAvailable -= InputStreamOnDataAvailable;
+                _inputStream.Dispose();
+                _inputStream = null;
+            }
+            if (_waveOut != null)
+            {
+                _waveOut.Stop();
+                _waveOut.PlaybackStopped -= WaveOutOnPlaybackStopped;
+                _waveOut.Dispose();
+                _waveOut = null;
+            }
+            if (_waveChanel != null)
+            {
+                _waveChanel.Dispose();
+            }
+            if (_waveReader != null)
+            {
+                _waveReader.Dispose();
+            }
         }
     }
 }

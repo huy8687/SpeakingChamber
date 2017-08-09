@@ -8,7 +8,42 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SettingUpdatingPage">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="Speaking Chamber Settings"/>
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <TextBlock Text="Number of tests database:"/>
+                <TextBlock Text="{Binding NumberTest}"/>
+            </StackPanel>
+            <Button  Grid.Row="0" Grid.Column="2" Content="Import" Command="{Binding CmdImport}" HorizontalAlignment="Right"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Online URL:"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding OnlineURL}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Local Path:"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LocalPath}"/>
+            <TextBlock  Grid.Row="3" Grid.Column="0" Text="to save recorded file" FontSize="8"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Network Path:"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding NetworkPath}"/>
+            <TextBlock  Grid.Row="5" Grid.Column="0" Text="to save recorded file" FontSize="8"/>
+
+            <Button Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Center" Content="Save Settings" Margin="20,0,20,0"/>
+            <Button Grid.Row="6" Grid.Column="2" Content="Cancel"/>
+        </Grid>
+    </StackPanel>
 </local:BasePage>
