@@ -4,12 +4,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:SpeakingChamber.Pages"
+    xmlns:controls="clr-namespace:SpeakingChamber.Controls"
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
     Title="OpeningPage">
 
     <StackPanel HorizontalAlignment="Center">
-        <Image Width="300" Source="/SpeakingChamber;component/Resources/logo.png" Stretch="UniformToFill"/>
+        <Image Width="275" Source="/SpeakingChamber;component/Resources/logo.png" Stretch="UniformToFill"/>
         <TextBlock Text="Speaking Chamber" FontSize="30" HorizontalAlignment="Center"/>
+        <Grid HorizontalAlignment="Center">
+            <StackPanel Visibility="{Binding IsShowLoading}">
+                <controls:CircularProgressBar HorizontalAlignment="Center" Height="45"/>
+                <TextBlock Text="Loading" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <TextBlock Height="23" Visibility="{Binding IsShowOnlineURL}" HorizontalAlignment="Center">
+                Please
+                <Hyperlink Command="{Binding CmdOpenOnlineURL}">click here</Hyperlink>
+                to continue
+            </TextBlock>
+            <StackPanel Visibility="{Binding IsShowLoginForm}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="180"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding LblName}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Date of Birth:" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <DatePicker Text="{Binding LblDoB}"  />
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding LblError}" Foreground="Red"/>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Button Content="Start" Command="{Binding CmdStart}" HorizontalAlignment="Center" Padding="10,0,10,0"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
     </StackPanel>
 </local:BasePage>

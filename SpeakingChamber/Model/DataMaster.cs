@@ -43,8 +43,6 @@ namespace SpeakingChamber.Model
             }
         }
 
-
-
         public static IList<Test> ImportTest(string filePath)
         {
             var result = ReadTest(filePath);

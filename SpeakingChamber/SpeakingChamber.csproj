@@ -78,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\Part.cs" />
     <Compile Include="Model\Question.cs" />
@@ -119,6 +122,10 @@
     <Compile Include="ViewModel\TestFinishingViewModel.cs" />
     <Compile Include="ViewModel\TestSelectionViewModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
+    <Page Include="Controls\CircularProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -192,7 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
