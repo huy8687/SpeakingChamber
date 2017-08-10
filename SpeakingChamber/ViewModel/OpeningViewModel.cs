@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using SpeakingChamber.Model;
+using SpeakingChamber.Pages;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -26,8 +27,17 @@ namespace SpeakingChamber.ViewModel
         public ICommand CmdStart => new Command(() =>
         {
             var result = !string.IsNullOrWhiteSpace(LblName) && !string.IsNullOrWhiteSpace(LblDoB);
-            LblError = result ? "" : "Please input name of date of birth!";
+            LblError = result ? "" : "Please input name & date of birth!";
+            if (result)
+            {
+                Navigation.Navigate(new TestSelectionPage());
+            }
         });
+        public ICommand CmdSettings => new Command(() =>
+        {
+            Navigation.Navigate(new SettingUpdatingPage());
+        });
+
 
         public override async Task Appearing()
         {

@@ -10,6 +10,7 @@
     Title="OpeningPage">
 
     <StackPanel HorizontalAlignment="Center">
+        <Button Content="SS" Command="{Binding CmdSettings}" HorizontalAlignment="Right"/>
         <Image Width="275" Source="/SpeakingChamber;component/Resources/logo.png" Stretch="UniformToFill"/>
         <TextBlock Text="Speaking Chamber" FontSize="30" HorizontalAlignment="Center"/>
         <Grid HorizontalAlignment="Center">
@@ -38,7 +39,7 @@
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding LblName}"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Date of Birth:" VerticalAlignment="Center"/>
                     <StackPanel Grid.Row="1" Grid.Column="1">
-                        <DatePicker Text="{Binding LblDoB}"  />
+                        <DatePicker SelectedDate="{Binding LblDoB}"/>
                     </StackPanel>
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding LblError}" Foreground="Red"/>
                     <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">

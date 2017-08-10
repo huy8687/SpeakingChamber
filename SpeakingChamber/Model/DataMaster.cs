@@ -18,6 +18,8 @@ namespace SpeakingChamber.Model
         private const string SETTING_FILE = "setting.xml";
         private const string DB_ROOT = "tests";
 
+        public static Test CurrentTest;
+
         public static void LoadData()
         {
             Tests = ReadTest(DB_FILE);

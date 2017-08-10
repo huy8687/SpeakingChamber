@@ -8,7 +8,22 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="TestSelectionPage">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="Select a test:"/>
+        <TextBlock Text="Please do not select the tets which you have complete before"/>
+        <ListView ItemsSource="{Binding Tests}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="10"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding CmdTestCode}" CommandParameter="{Binding}">click here</Hyperlink>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
 </local:BasePage>

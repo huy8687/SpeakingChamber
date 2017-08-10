@@ -18,6 +18,7 @@ namespace SpeakingChamber.Pages
             set
             {
                 _viewModel = value;
+                //_viewModel.Navigation = NavigationService;
                 DataContext = value;
             }
         }

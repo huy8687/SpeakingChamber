@@ -1,5 +1,6 @@
 ﻿using SpeakingChamber.Model;
 using SpeakingChamber.Pages;
+using SpeakingChamber.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,9 @@ namespace SpeakingChamber
         {
             InitializeComponent();
             DataMaster.LoadData();
-            MainFrame.Content = new OpeningPage();
+            //MainFrame.Content = new OpeningPage();
+            MainFrame.NavigationService.Navigate(new OpeningPage());
+            BaseViewModel.Navigation = MainFrame.NavigationService;
         }
     }
 }
