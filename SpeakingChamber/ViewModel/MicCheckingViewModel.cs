@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SpeakingChamber.Model;
 using System.Windows;
 using NAudio.Wave;
+using SpeakingChamber.Pages;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -42,12 +40,13 @@ namespace SpeakingChamber.ViewModel
 
         public ICommand CmdYes => new Command(() =>
         {
-            // TODO goto Test screen
+            DataMaster.SaveSetting();
+            Navigation.Navigate(new StartExamPage());
         });
 
         public ICommand CmdNo => new Command(() =>
         {
-            // TODO goto home screen
+            OpenMicFailedPage();
         });
 
         public override async Task Appearing()
@@ -80,16 +79,26 @@ namespace SpeakingChamber.ViewModel
             var devNumber = InputSources.IndexOf(SelectedInput);
             InputSources = null;
 
+            DataMaster.Setting.DevNumber = devNumber;
+            DataMaster.Setting.MicChanel = SelectedInput.Channels;
+
             ReleaseResource();
 
-            _inputStream = new WaveIn
+            try
             {
-                DeviceNumber = devNumber,
-                WaveFormat = new WaveFormat(44100, SelectedInput.Channels)
-            };
-            _inputStream.DataAvailable += InputStreamOnDataAvailable;
-            _waveWriter = new WaveFileWriter("sample.wav", _inputStream.WaveFormat);
-            _inputStream.StartRecording();
+                _inputStream = new WaveIn
+                {
+                    DeviceNumber = devNumber,
+                    WaveFormat = new WaveFormat(44100, SelectedInput.Channels)
+                };
+                _inputStream.DataAvailable += InputStreamOnDataAvailable;
+                _waveWriter = new WaveFileWriter("sample.wav", _inputStream.WaveFormat);
+                _inputStream.StartRecording();
+            }
+            catch (Exception)
+            {
+                OpenMicFailedPage();
+            }
         }
 
         private void InputStreamOnDataAvailable(object sender, WaveInEventArgs e)
@@ -109,7 +118,7 @@ namespace SpeakingChamber.ViewModel
         private void OpenMicFailedPage()
         {
             ReleaseResource();
-            // TODO: goto error screen
+            Navigation.Navigate(new MicCheckingFailedPage());
         }
 
         private void WaveOutOnPlaybackStopped(object sender, StoppedEventArgs stoppedEventArgs)

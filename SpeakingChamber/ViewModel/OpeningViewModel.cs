@@ -30,6 +30,8 @@ namespace SpeakingChamber.ViewModel
             LblError = result ? "" : "Please input name & date of birth!";
             if (result)
             {
+                DataMaster.UserName = LblName;
+                DataMaster.Date = DateTime.Parse(LblDoB).ToString("dd/MM/yyyy");
                 Navigation.Navigate(new TestSelectionPage());
             }
         });
@@ -38,11 +40,16 @@ namespace SpeakingChamber.ViewModel
             Navigation.Navigate(new SettingUpdatingPage());
         });
 
+        private bool _loaded;
 
         public override async Task Appearing()
         {
             await base.Appearing();
-            LoadData();
+            if (!_loaded)
+            {
+                LoadData();
+                _loaded = true;
+            }
         }
 
         private async void LoadData()

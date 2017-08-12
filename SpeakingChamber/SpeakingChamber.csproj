@@ -81,6 +81,8 @@
     <Compile Include="Controls\CircularProgressBar.xaml.cs">
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extension\EnumerableExtensions.cs" />
+    <Compile Include="Extension\NavigationExtensions.cs" />
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\Part.cs" />
     <Compile Include="Model\Question.cs" />
@@ -88,6 +90,9 @@
     <Compile Include="Model\Test.cs" />
     <Compile Include="Model\DataMaster.cs" />
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\MicCheckingFailedPage.xaml.cs">
+      <DependentUpon>MicCheckingFailedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MicCheckingPage.xaml.cs">
       <DependentUpon>MicCheckingPage.xaml</DependentUpon>
     </Compile>
@@ -114,6 +119,7 @@
     </Compile>
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MicCheckingFailedViewModel.cs" />
     <Compile Include="ViewModel\MicCheckingViewModel.cs" />
     <Compile Include="ViewModel\OpeningViewModel.cs" />
     <Compile Include="ViewModel\SettingPasswordViewModel.cs" />
@@ -138,6 +144,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\MicCheckingFailedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MicCheckingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,8 +208,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\clock_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

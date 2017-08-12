@@ -24,7 +24,7 @@ namespace SpeakingChamber.Pages
         public TestPage()
         {
             InitializeComponent();
-            ViewModel = new TestViewModel();
+            ViewModel = new TestViewModel(VideoView);
         }
     }
 }

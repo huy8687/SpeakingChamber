@@ -26,9 +26,9 @@ namespace SpeakingChamber
         {
             InitializeComponent();
             DataMaster.LoadData();
-            //MainFrame.Content = new OpeningPage();
-            MainFrame.NavigationService.Navigate(new OpeningPage());
-            BaseViewModel.Navigation = MainFrame.NavigationService;
+            MainFrame.Content = new OpeningPage();
+            //MainFrame.NavigationService.Navigate(new OpeningPage());
+            BaseViewModel.Navigation = MainFrame;
         }
     }
 }

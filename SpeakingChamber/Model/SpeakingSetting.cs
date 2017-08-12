@@ -16,5 +16,12 @@ namespace SpeakingChamber.Model
         public string LocalPath { get; set; }
         [XmlElement("networkpath")]
         public string NetworkPath { get; set; }
+        [XmlElement("devnumber")]
+        public int? DevNumber { get; set; }
+        [XmlElement("micchanel")]
+        public int? MicChanel { get; set; }
+
+        [XmlIgnore]
+        public string UserLocalPath => LocalPath + DataMaster.UserName.Trim();
     }
 }

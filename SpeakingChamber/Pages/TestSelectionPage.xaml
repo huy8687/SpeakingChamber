@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="TestSelectionPage">
 
-    <StackPanel>
+    <StackPanel x:Name="Root">
         <TextBlock Text="Select a test:"/>
         <TextBlock Text="Please do not select the tets which you have complete before"/>
         <ListView ItemsSource="{Binding Tests}">
@@ -20,7 +20,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
-                        <Hyperlink Command="{Binding CmdTestCode}" CommandParameter="{Binding}">click here</Hyperlink>
+                        <Hyperlink Command="{Binding ElementName=Root, Path=DataContext.CmdTestCode}" CommandParameter="{Binding}">
+                            <TextBlock Text="{Binding Code}"/>
+                        </Hyperlink>
                     </TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>

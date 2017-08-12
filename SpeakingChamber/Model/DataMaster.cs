@@ -14,6 +14,9 @@ namespace SpeakingChamber.Model
         public static IList<Test> Tests { get; private set; }
         public static SpeakingSetting Setting { get; private set; }
 
+        public static string UserName { get; set; }
+        public static string Date { get; set; }
+
         private const string DB_FILE = "db.xml";
         private const string SETTING_FILE = "setting.xml";
         private const string DB_ROOT = "tests";
@@ -98,13 +101,19 @@ namespace SpeakingChamber.Model
 
         public static bool SaveSetting(string onlineURL, string localPath, string networkPath)
         {
+            Setting.OnlineUrl = onlineURL;
+            Setting.LocalPath = localPath;
+            Setting.NetworkPath = networkPath;
+            return SaveSetting();
+        }
+
+        public static bool SaveSetting()
+        {
             var result = false;
             try
             {
                 File.Delete(SETTING_FILE);
-                Setting.OnlineUrl = onlineURL;
-                Setting.LocalPath = localPath;
-                Setting.NetworkPath = networkPath;
+
                 XmlSerializer serializer = new XmlSerializer(typeof(SpeakingSetting));
                 using (TextWriter writer = new StreamWriter(SETTING_FILE))
                 {

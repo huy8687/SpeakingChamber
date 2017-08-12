@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeakingChamber.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +13,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SpeakingChamber.ViewModel;
 
 namespace SpeakingChamber.Pages
 {
     /// <summary>
-    /// Interaction logic for TestSelectionPage.xaml
+    /// Interaction logic for MicCheckingFailedPage.xaml
     /// </summary>
-    public partial class TestSelectionPage : BasePage
+    public partial class MicCheckingFailedPage : BasePage
     {
-        public TestSelectionPage()
+        public MicCheckingFailedPage()
         {
             InitializeComponent();
-            ViewModel = new TestSelectionViewModel();
+            ViewModel = new MicCheckingFailedViewModel();
         }
     }
 }

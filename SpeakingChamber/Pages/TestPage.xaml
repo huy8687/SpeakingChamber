@@ -8,7 +8,20 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="TestPage">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBlock Visibility="{Binding ShowPart}" DataContext="{Binding CurPart}" Text="{Binding Name}"/>
+        <TextBlock Visibility="{Binding ShowOutOfTime}" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Out of time. Moving to next question"/>
+        <Grid Visibility="{Binding ShowQuestion}">
+            <MediaElement x:Name="VideoView" Width="300" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="UniformToFill"/>
+            <StackPanel Visibility="{Binding ShowQuestionContent}">
+                <TextBlock DataContext="{Binding CurQuestion}" Text="{Binding Content}"/>
+                <TextBlock DataContext="{Binding CurQuestion}" Text="{Binding Guide}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16" Source="/SpeakingChamber;component/Resources/clock_icon.png" Stretch="UniformToFill"/>
+                    <TextBlock Text="{Binding DecoRemainTime}"/>
+                </StackPanel>
+                <Button Command="{Binding CmdContinue}" Content="Continue"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </local:BasePage>
