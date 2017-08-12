@@ -221,7 +221,7 @@ namespace SpeakingChamber.ViewModel
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 
                 var dob = DateTime.ParseExact(DataMaster.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("ddMMyyyy");
-                var path = Path.Combine(DataMaster.Setting.UserLocalPath, DateTime.Now.ToString("ddMMyyyy") + "_" + DataMaster.UserName.Trim() + "_" + dob + "_" + _curTest.Code + "_" + _curTest.Parts.IndexOf(CurPart) + "_" + CurPart.Questions.IndexOf(CurQuestion) + ".wav");
+                var path = Path.Combine(DataMaster.Setting.UserLocalPath, DateTime.Now.ToString("ddMMyyyy") + "_" + DataMaster.UserNamePath + "_" + dob + "_" + _curTest.Code + "_" + (_curTest.Parts.IndexOf(CurPart) + 1) + "_" + (CurPart.Questions.IndexOf(CurQuestion) + 1) + ".mp3");
                 _waveWriter = new WaveFileWriter(path, _inputStream.WaveFormat);
                 _inputStream.StartRecording();
             }

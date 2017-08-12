@@ -4,11 +4,14 @@ using System.Windows;
 using System.Windows.Input;
 using SpeakingChamber.Model;
 using SpeakingChamber.Pages;
+using System.IO;
+using SpeakingChamber.Extension;
 
 namespace SpeakingChamber.ViewModel
 {
     public class OpeningViewModel : BaseViewModel
     {
+        public Visibility IsShowSetting => IsShowLoading == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsShowLoading { get; set; } = Visibility.Hidden;
 
         public Visibility IsShowOnlineURL { get; set; } = Visibility.Hidden;
@@ -23,6 +26,29 @@ namespace SpeakingChamber.ViewModel
         public string LblError { get; set; }
         public ICommand CmdStart => new Command(() =>
         {
+            LblName = LblName.SupperTrim();
+
+            try
+            {
+                const string CS_FOLDER = "Checksumxx";
+                var cs_In = new DirectoryInfo(CS_FOLDER);
+                if (!cs_In.Exists)
+                    cs_In.Create();
+                try
+                {
+                    var path = Path.Combine(CS_FOLDER, LblName);
+                    File.WriteAllText(path, "test");
+                    File.Delete(path);
+                }
+                catch { throw; }
+                finally { cs_In.Delete(true); }
+            }
+            catch
+            {
+                LblError = "Name is invalid!";
+                return;
+            }
+
             var result = !string.IsNullOrWhiteSpace(LblName) && !string.IsNullOrWhiteSpace(LblDoB);
             LblError = result ? "" : "Please input name & date of birth!";
             if (result)
@@ -32,6 +58,7 @@ namespace SpeakingChamber.ViewModel
                 Navigation.Navigate(new TestSelectionPage());
             }
         });
+
         public ICommand CmdSettings => new Command(() =>
         {
             Navigation.Navigate(new SettingUpdatingPage());

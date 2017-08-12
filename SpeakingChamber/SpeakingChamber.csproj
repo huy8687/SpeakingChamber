@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Extension\EnumerableExtensions.cs" />
     <Compile Include="Extension\NavigationExtensions.cs" />
+    <Compile Include="Extension\StringExtensions.cs" />
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\Part.cs" />
     <Compile Include="Model\Question.cs" />

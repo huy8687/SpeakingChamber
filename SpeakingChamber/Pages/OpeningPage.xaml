@@ -10,7 +10,7 @@
     Title="OpeningPage">
 
     <StackPanel HorizontalAlignment="Center">
-        <Button Content="SS" Command="{Binding CmdSettings}" HorizontalAlignment="Right"/>
+        <Button Content="SS" Visibility="{Binding IsShowSetting}" Command="{Binding CmdSettings}" HorizontalAlignment="Right"/>
         <Image Width="275" Source="/SpeakingChamber;component/Resources/logo.png" Stretch="UniformToFill"/>
         <TextBlock Text="Speaking Chamber" FontSize="30" HorizontalAlignment="Center"/>
         <Grid HorizontalAlignment="Center">
