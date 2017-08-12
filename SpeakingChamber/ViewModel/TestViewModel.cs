@@ -54,8 +54,16 @@ namespace SpeakingChamber.ViewModel
             await base.Appearing();
 
             var di = new DirectoryInfo(DataMaster.Setting.UserLocalPath);
-            foreach (var file in di.GetFiles()) file.Delete();
-            foreach (var dir in di.GetDirectories()) dir.Delete(true);
+            if (di.Exists)
+            {
+                foreach (var file in di.GetFiles()) file.Delete();
+                foreach (var dir in di.GetDirectories()) dir.Delete(true);
+            }
+            else
+            {
+                di.Create();
+            }
+
 
             _videoView.MediaOpened += _videoView_MediaOpened;
             _videoView.MediaFailed += _videoView_MediaFailed;
@@ -128,9 +136,9 @@ namespace SpeakingChamber.ViewModel
                 CurQuestion = _questions.Dequeue();
             else
                 if (_parts.Count > 0)
-                    CurPart = _parts.Dequeue();
-                else
-                    Navigation.Navigate(new TestFinishingPage());
+                CurPart = _parts.Dequeue();
+            else
+                Navigation.Navigate(new TestFinishingPage());
         }
 
         private void _videoView_MediaOpened(object sender, RoutedEventArgs e)
@@ -140,7 +148,7 @@ namespace SpeakingChamber.ViewModel
 
         private void _videoView_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            MessageBox.Show($"Fail to play Video file: {VideoURL}");
+            //MessageBox.Show($"Fail to play Video file: {VideoURL}");
             Application.Current.Dispatcher.Invoke(SetupShowQuestion);
         }
 
@@ -212,7 +220,7 @@ namespace SpeakingChamber.ViewModel
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 
-                var dob = DateTime.ParseExact(DataMaster.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("hhMMyyyy");
+                var dob = DateTime.ParseExact(DataMaster.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("ddMMyyyy");
                 var path = Path.Combine(DataMaster.Setting.UserLocalPath, DateTime.Now.ToString("ddMMyyyy") + "_" + DataMaster.UserName.Trim() + "_" + dob + "_" + _curTest.Code + "_" + _curTest.Parts.IndexOf(CurPart) + "_" + CurPart.Questions.IndexOf(CurQuestion) + ".wav");
                 _waveWriter = new WaveFileWriter(path, _inputStream.WaveFormat);
                 _inputStream.StartRecording();

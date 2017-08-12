@@ -9,6 +9,23 @@
       Title="TestFinishingPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Congratulations! You have completed the exam!"/>
+        <TextBlock Grid.Row="2" Text="{Binding UserName,StringFormat=Name: {0}}"/>
+        <StackPanel Grid.Row="4">
+            <TextBlock Text="{Binding ExamCode,StringFormat=EXAM CODE: {0}}"/>
+            <TextBlock Text="{Binding ExamDate,StringFormat=Date: {0}}"/>
+        </StackPanel>
+        <Button Grid.Row="6" Content="OK" Command="{Binding CmdOK}"/>
     </Grid>
 </local:BasePage>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+﻿using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace SpeakingChamber
@@ -12,5 +9,14 @@ namespace SpeakingChamber
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+        }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            File.AppendAllText("ex_rr.txt", e.Exception.StackTrace);
+        }
     }
 }
