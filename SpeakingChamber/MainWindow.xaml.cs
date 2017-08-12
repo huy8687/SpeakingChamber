@@ -17,6 +17,35 @@ namespace SpeakingChamber
             MainFrame.Content = new OpeningPage();
             //MainFrame.NavigationService.Navigate(new OpeningPage());
             BaseViewModel.Navigation = MainFrame;
+            MainFrame.Navigated += MainFrame_Navigated;
+        }
+
+        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (MainFrame.Content is OpeningPage)
+            {
+                BtnSetting.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnSetting.Visibility = Visibility.Hidden;
+            }
+
+        }
+
+        private void BtnMiniMize_Clicked(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void BtnClose_Clicked(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnSetting_Clicked(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SettingPasswordPage());
         }
     }
 }

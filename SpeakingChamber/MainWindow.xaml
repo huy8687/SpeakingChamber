@@ -5,16 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeakingChamber"
         mc:Ignorable="d"
-        Title="MainWindow" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner" AllowDrop="True">
+        Title="Chamber Speaking" WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized"
+        WindowStartupLocation="CenterScreen" 
+        Width="1024" Height="768"
+        >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="1"/>
-            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Background="Black"/>
-        <Frame Grid.Row="1" x:Name="MainFrame"/>
-        <StackPanel Grid.Row="2" Background="Black"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="/SpeakingChamber;component/Resources/9.png" Stretch="Fill"/>
+        <Image Grid.Row="0" Grid.Column="0" Margin="5" Source="/SpeakingChamber;component/Resources/3.png" Stretch="Fill"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Excel Speaking Chamber" FontSize="18" VerticalAlignment="Center"/>
+        <Button Grid.Row="0" Grid.Column="3" Background="Transparent" BorderThickness="0" Padding="10" Click="BtnMiniMize_Clicked">
+            <Image Source="/SpeakingChamber;component/Resources/minimize.png" Stretch="Fill"/>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="4" Background="Transparent" BorderThickness="0" Padding="10" Click="BtnClose_Clicked">
+            <Image Source="/SpeakingChamber;component/Resources/close_icon.png" Stretch="Fill"/>
+        </Button>
+        <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Source="/SpeakingChamber;component/Resources/a.png" Stretch="Fill"/>
+        <Button Grid.Row="1" Grid.Column="4" x:Name="BtnSetting" Height="40" Width="40" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Padding="10" Click="BtnSetting_Clicked">
+            <Image Source="/SpeakingChamber;component/Resources/4.png" Stretch="Fill"/>
+        </Button>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" x:Name="MainFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

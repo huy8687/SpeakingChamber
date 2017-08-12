@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace SpeakingChamber.Model
@@ -77,7 +78,7 @@ namespace SpeakingChamber.Model
                     {
                         result = serializer.Deserialize(reader) as List<Test>;
                     }
-                    catch (Exception) { }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
                 }
             }
             return result;

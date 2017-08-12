@@ -2,6 +2,7 @@
 using SpeakingChamber.Model;
 using Microsoft.Win32;
 using System.Windows;
+using SpeakingChamber.Extension;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -44,18 +45,18 @@ namespace SpeakingChamber.ViewModel
             }
             if (DataMaster.SaveSetting(OnlineURL, LocalPath, NetworkPath))
             {
-                MessageBox.Show("Succesfully apply your settings...");
-                // TODO: goto next screen
+                MessageBox.Show("Succesfully apply your settings..");
+                Navigation.PopToRoot();
             }
             else
             {
-                MessageBox.Show("Failed apply your settings...");
+                MessageBox.Show("Failed apply your settings..");
             }
         });
 
         public ICommand CmdCancel => new Command(() =>
         {
-            // TODO: goto next screen
+            Navigation.PopToRoot();
         });
     }
 }

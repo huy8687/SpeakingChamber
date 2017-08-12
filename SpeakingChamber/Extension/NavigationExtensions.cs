@@ -6,7 +6,7 @@ namespace SpeakingChamber.Extension
     {
         public static void PopToRoot(this Frame nav)
         {
-            if (nav.BackStack.Count() < 2)
+            if (nav.BackStack.Count() < 1)
                 return;
             while(nav.BackStack.Count() >= 2)
             {

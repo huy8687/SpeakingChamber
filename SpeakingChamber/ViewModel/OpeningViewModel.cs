@@ -11,7 +11,6 @@ namespace SpeakingChamber.ViewModel
 {
     public class OpeningViewModel : BaseViewModel
     {
-        public Visibility IsShowSetting => IsShowLoading == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsShowLoading { get; set; } = Visibility.Hidden;
 
         public Visibility IsShowOnlineURL { get; set; } = Visibility.Hidden;
@@ -57,11 +56,6 @@ namespace SpeakingChamber.ViewModel
                 DataMaster.Date = DateTime.Parse(LblDoB).ToString("dd/MM/yyyy");
                 Navigation.Navigate(new TestSelectionPage());
             }
-        });
-
-        public ICommand CmdSettings => new Command(() =>
-        {
-            Navigation.Navigate(new SettingUpdatingPage());
         });
 
         private bool _loaded;
