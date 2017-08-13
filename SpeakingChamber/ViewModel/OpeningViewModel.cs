@@ -56,13 +56,13 @@ namespace SpeakingChamber.ViewModel
             }
             else
             {
-                if (Utils.CheckPath(setting.LocalPath) && Utils.CheckPath(setting.NetworkPath))
+                if (Utils.CheckPath(setting.LocalPath))
                 {
                     Navigation.Navigate(new UserLoginPage());
                 }
                 else
                 {
-                    MessageBox.Show("Please setting Local and Network paths");
+                    MessageBox.Show("Please create LocalPath");
                 }
 
             }

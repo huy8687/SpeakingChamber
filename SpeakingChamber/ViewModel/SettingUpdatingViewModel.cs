@@ -39,7 +39,11 @@ namespace SpeakingChamber.ViewModel
                 MessageBox.Show("LocalPath is not correct");
                 return;
             }
-            if (!Utils.CheckPath(NetworkPath))
+            if (string.IsNullOrWhiteSpace(NetworkPath))
+            {
+                NetworkPath = string.Empty;
+            }
+            else if (!Utils.CheckPath(NetworkPath))
             {
                 MessageBox.Show("NetworkPath is not correct");
                 return;
