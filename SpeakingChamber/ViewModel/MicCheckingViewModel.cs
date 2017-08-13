@@ -12,7 +12,7 @@ namespace SpeakingChamber.ViewModel
     public class MicCheckingViewModel : BaseViewModel
     {
         public IList<WaveInCapabilities> InputSources { get; private set; }
-        public WaveInCapabilities SelectedInput { get; set; }
+        public WaveInCapabilities? SelectedInput { get; set; }
         public bool EnableComplete { get; set; } = true;
 
         public Visibility VisibleConfirm => EnableComplete ? Visibility.Hidden : Visibility.Visible;
@@ -26,16 +26,23 @@ namespace SpeakingChamber.ViewModel
 
         public ICommand CmdComplete => new Command(() =>
         {
-            EnableComplete = false;
+            if (SelectedInput.HasValue)
+            {
+                EnableComplete = false;
 
-            ReleaseResource();
+                ReleaseResource();
 
-            _waveReader = new WaveFileReader("sample.wav");
-            _waveChanel = new WaveChannel32(_waveReader) { PadWithZeroes = false };
-            _waveOut = new DirectSoundOut();
-            _waveOut.Init(_waveChanel);
-            _waveOut.PlaybackStopped += WaveOutOnPlaybackStopped;
-            _waveOut.Play();
+                _waveReader = new WaveFileReader("sample.wav");
+                _waveChanel = new WaveChannel32(_waveReader) { PadWithZeroes = false };
+                _waveOut = new DirectSoundOut();
+                _waveOut.Init(_waveChanel);
+                _waveOut.PlaybackStopped += WaveOutOnPlaybackStopped;
+                _waveOut.Play();
+            }
+            else
+            {
+                MessageBox.Show("Please select an Microphone card!");
+            }
         });
 
         public ICommand CmdYes => new Command(() =>
@@ -76,11 +83,11 @@ namespace SpeakingChamber.ViewModel
 
         public void OnSelectedInputChanged()
         {
-            var devNumber = InputSources.IndexOf(SelectedInput);
+            var devNumber = InputSources.IndexOf(SelectedInput.Value);
             InputSources = null;
 
             DataMaster.Setting.DevNumber = devNumber;
-            DataMaster.Setting.MicChanel = SelectedInput.Channels;
+            DataMaster.Setting.MicChanel = SelectedInput.Value.Channels;
 
             ReleaseResource();
 
@@ -89,7 +96,7 @@ namespace SpeakingChamber.ViewModel
                 _inputStream = new WaveIn
                 {
                     DeviceNumber = devNumber,
-                    WaveFormat = new WaveFormat(44100, SelectedInput.Channels)
+                    WaveFormat = new WaveFormat(44100, SelectedInput.Value.Channels)
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
                 _waveWriter = new WaveFileWriter("sample.wav", _inputStream.WaveFormat);
