@@ -226,7 +226,7 @@ namespace SpeakingChamber.ViewModel
                 _waveWriter = new WaveFileWriter(path, _inputStream.WaveFormat);
                 _inputStream.StartRecording();
             }
-            catch (Exception ex)
+            catch
             {
                 StopRecord();
                 NextQuestion();
