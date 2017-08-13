@@ -4,24 +4,27 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
+      xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="TestPage">
 
-    <StackPanel>
-        <TextBlock Visibility="{Binding ShowPart}" DataContext="{Binding CurPart}" Text="{Binding Name}"/>
-        <TextBlock Visibility="{Binding ShowOutOfTime}" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Out of time. Moving to next question"/>
-        <Grid Visibility="{Binding ShowQuestion}">
-            <MediaElement x:Name="VideoView" Width="300" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="UniformToFill"/>
-            <StackPanel Visibility="{Binding ShowQuestionContent}">
-                <TextBlock DataContext="{Binding CurQuestion}" Text="{Binding Content}"/>
-                <TextBlock DataContext="{Binding CurQuestion}" Text="{Binding Guide}"/>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="16" Source="/SpeakingChamber;component/Resources/clock_icon.png" Stretch="UniformToFill"/>
-                    <TextBlock Text="{Binding DecoRemainTime}"/>
+    <Grid>
+        <StackPanel>
+            <control:MyTextBlock FontSize="42" Margin="40,0,0,0" Visibility="{Binding ShowPart}" Text="{Binding CurPart.Name}"/>
+            <Grid Visibility="{Binding ShowQuestion}" Margin="0,40,0,0">
+                <MediaElement x:Name="VideoView" Width="500" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="UniformToFill"/>
+                <StackPanel Visibility="{Binding ShowQuestionContent}">
+                    <control:MyTextBlock Margin="100,0,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Content}" FontSize="23"/>
+                    <control:MyTextBlock Margin="100,20,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Guide}" FontSize="23"/>
+                    <StackPanel Margin="0,40,0,0" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+                        <Image Source="/SpeakingChamber;component/Resources/11.png" Stretch="Fill"/>
+                        <control:MyTextBlock Margin="15,0,0,0" Text="{Binding DecoRemainTime}" FontSize="23" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </StackPanel>
-                <Button Command="{Binding CmdContinue}" Content="Continue"/>
-            </StackPanel>
-        </Grid>
-    </StackPanel>
+            </Grid>
+        </StackPanel>
+        <control:MyTextBlock Visibility="{Binding ShowOutOfTime}" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Out of time. Moving to next question" FontSize="32"/>
+        <control:MyButton Command="{Binding CmdContinue}" Visibility="{Binding ShowQuestionContent}" Text="Continue" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Margin="40"/>
+    </Grid>
 </local:BasePage>

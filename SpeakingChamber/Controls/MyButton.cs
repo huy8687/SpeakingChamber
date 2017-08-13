@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SpeakingChamber.Controls
@@ -30,11 +27,11 @@ namespace SpeakingChamber.Controls
             {
                 Stretch = System.Windows.Media.Stretch.Fill
             };
-            _textBlock = new TextBlock()
+            _textBlock = new MyTextBlock()
             {
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                TextAlignment = TextAlignment.Center
+                TextAlignment = TextAlignment.Center,
             };
             var uriSource = new Uri("/SpeakingChamber;component/Resources/9.png", UriKind.Relative);
             _imageBackground.Source = new BitmapImage(uriSource);
@@ -42,6 +39,10 @@ namespace SpeakingChamber.Controls
             _template.Children.Add(_imageBackground);
             _template.Children.Add(_textBlock);
             Content = _template;
+            Foreground = Brushes.White;
+            FontSize = 23;
+            Height = 40;
+            BorderThickness = new Thickness(0);
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)

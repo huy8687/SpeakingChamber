@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeakingChamber"
         mc:Ignorable="d"
-        Title="Chamber Speaking" WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized"
+        Title="Chamber Speaking"
         WindowStartupLocation="CenterScreen" 
         Width="1024" Height="768"
         >
@@ -34,6 +34,6 @@
         <Button Grid.Row="1" Grid.Column="4" x:Name="BtnSetting" Height="40" Width="40" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Padding="10" Click="BtnSetting_Clicked">
             <Image Source="/SpeakingChamber;component/Resources/4.png" Stretch="Fill"/>
         </Button>
-        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" x:Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,40,0,40"/>
     </Grid>
 </Window>

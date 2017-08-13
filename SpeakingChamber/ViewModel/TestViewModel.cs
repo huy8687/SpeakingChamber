@@ -192,7 +192,8 @@ namespace SpeakingChamber.ViewModel
                     ShowOutOfTime = ShowQuestionContent = Visibility.Hidden;
                     break;
                 case EDisplayType.ShowOutOfTime:
-                    ShowPart = ShowQuestion = ShowQuestionVideo = ShowQuestionContent = Visibility.Hidden;
+                    ShowQuestion = ShowQuestionVideo = ShowQuestionContent = Visibility.Hidden;
+                    ShowPart = Visibility.Hidden;
                     ShowOutOfTime = Visibility.Visible;
                     break;
                 case EDisplayType.ShowQuestionContent:
@@ -215,8 +216,8 @@ namespace SpeakingChamber.ViewModel
             {
                 _inputStream = new WaveIn
                 {
-                    DeviceNumber = DataMaster.Setting.DevNumber.Value,
-                    WaveFormat = new WaveFormat(44100, DataMaster.Setting.MicChanel.Value)
+                    DeviceNumber = DataMaster.Setting.DevNumber,
+                    WaveFormat = new WaveFormat(44100, DataMaster.Setting.MicChanel)
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 

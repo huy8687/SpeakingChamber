@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 using SpeakingChamber.Extension;
+using System.Windows;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -38,9 +39,28 @@ namespace SpeakingChamber.ViewModel
                 diNetwork = new DirectoryInfo(Path.Combine(DataMaster.Setting.NetworkPath, today, name));
                 if (!diNetwork.Exists) diNetwork.Create();
 
+                foreach (var file in diNetwork.GetFiles())
+                {
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fail to clear network!", ex.Message);
+                    }
+                }
+
                 foreach (var file in di.GetFiles())
                 {
-                    File.Copy(file.FullName, Path.Combine(diNetwork.FullName, file.Name));
+                    try
+                    {
+                        File.Copy(file.FullName, Path.Combine(diNetwork.FullName, file.Name));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fail to copy file to network!", ex.Message);
+                    }
                 }
 
                 XmlSerializer serializer = new XmlSerializer(typeof(Test), root: new XmlRootAttribute("test"));
@@ -50,7 +70,10 @@ namespace SpeakingChamber.ViewModel
                     {
                         serializer.Serialize(reader, DataMaster.CurrentTest);
                     }
-                    catch (Exception) { }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fail to exam to network!", ex.Message);
+                    }
                 }
             }
         }

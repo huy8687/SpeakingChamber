@@ -32,6 +32,7 @@ namespace SpeakingChamber.ViewModel
             if (!string.IsNullOrWhiteSpace(OnlineURL) && !Utils.CheckUrl(OnlineURL))
             {
                 MessageBox.Show("OnlineURL is not correct");
+                OnlineURL = "";
             }
             if (!Utils.CheckPath(LocalPath))
             {

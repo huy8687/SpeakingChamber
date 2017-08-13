@@ -5,5 +5,15 @@
              xmlns:control="clr-namespace:SpeakingChamber.Controls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <ImageBrush x:Key="MyTextBoxBackground" ImageSource="/SpeakingChamber;component/Resources/15.png"></ImageBrush>
+        <Style x:Key="MyTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{StaticResource MyTextBoxBackground}"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="23"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
     </Application.Resources>
 </Application>

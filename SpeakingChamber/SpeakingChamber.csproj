@@ -82,6 +82,7 @@
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MyButton.cs" />
+    <Compile Include="Controls\MyTextBlock.cs" />
     <Compile Include="Extension\EnumerableExtensions.cs" />
     <Compile Include="Extension\NavigationExtensions.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
@@ -119,6 +120,9 @@
     <Compile Include="Pages\TestSelectionPage.xaml.cs">
       <DependentUpon>TestSelectionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserLoginPage.xaml.cs">
+      <DependentUpon>UserLoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MicCheckingFailedViewModel.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="ViewModel\TestFinishingViewModel.cs" />
     <Compile Include="ViewModel\TestSelectionViewModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="ViewModel\UserLoginViewModel.cs" />
     <Page Include="Controls\CircularProgressBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -179,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TestSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

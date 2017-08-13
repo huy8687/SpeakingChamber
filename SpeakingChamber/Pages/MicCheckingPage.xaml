@@ -11,8 +11,10 @@
     Title="MicCheckingPage">
 
     <StackPanel>
-        <TextBlock Margin="15" Text="PLease check your microphone" FontSize="42" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Center" Margin="50,15,50,15" FontSize="25" Foreground="White" Text="First, please say something to the microphone, then click 'Complete' button"/>
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Margin="15,0,0,15" Text="Please check your microphone" FontSize="42" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Center" Margin="50,15,50,15" FontSize="25" Foreground="White" Text="First, please say something to the microphone, then click 'Complete' button"/>
+        </StackPanel>
         <ListBox Margin="15" HorizontalAlignment="Center" ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

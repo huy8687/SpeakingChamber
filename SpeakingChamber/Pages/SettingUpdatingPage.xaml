@@ -4,17 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
+      xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SettingUpdatingPage">
 
-    <StackPanel>
-        <TextBlock Text="Speaking Chamber Settings"/>
-        <Grid HorizontalAlignment="Center">
+    <StackPanel HorizontalAlignment="Center">
+        <control:MyTextBlock Text="Speaking Chamber Settings" FontSize="41" HorizontalAlignment="Center"/>
+        <Grid HorizontalAlignment="Center" Margin="30" Width="550">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="270"/>
                 <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -26,24 +27,24 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                <TextBlock Text="Number of tests database:"/>
-                <TextBlock Text="{Binding NumberTest}"/>
+                <control:MyTextBlock Text="Number of tests database:"/>
+                <control:MyTextBlock Margin="10,0,0,0" Text="{Binding NumberTest}"/>
             </StackPanel>
-            <Button  Grid.Row="0" Grid.Column="2" Content="Import" Command="{Binding CmdImport}" HorizontalAlignment="Right"/>
+            <control:MyButton Height="30" FontSize="17" Grid.Row="0" Grid.Column="2" Text="Import" Command="{Binding CmdImport}" HorizontalAlignment="Right"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Online URL:"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding OnlineURL}"/>
+            <control:MyTextBlock Margin="0,30,0,30" Grid.Row="1" Grid.Column="0" Text="Online URL:"  VerticalAlignment="Center"/>
+            <TextBox Margin="0,30,0,30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding OnlineURL}" Style="{StaticResource MyTextBoxStyle}"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Local Path:"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LocalPath}"/>
-            <TextBlock  Grid.Row="3" Grid.Column="0" Text="to save recorded file" FontSize="8"/>
+            <control:MyTextBlock Grid.Row="2" Grid.Column="0" Text="Local Path:" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LocalPath}" Style="{StaticResource MyTextBoxStyle}"/>
+            <control:MyTextBlock Margin="0,-5,0,0" Grid.Row="3" Grid.Column="0" Text="To save recorded file" FontSize="12"/>
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Network Path:"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding NetworkPath}"/>
-            <TextBlock  Grid.Row="5" Grid.Column="0" Text="to save recorded file" FontSize="8"/>
+            <control:MyTextBlock Margin="0,30,0,0" Grid.Row="4" Grid.Column="0" Text="Network Path:"  VerticalAlignment="Center"/>
+            <TextBox Grid.Row="4" Margin="0,30,0,0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding NetworkPath}" Style="{StaticResource MyTextBoxStyle}"/>
+            <control:MyTextBlock Margin="0,-5,0,30"  Grid.Row="5" Grid.Column="0" Text="To save recorded file" FontSize="12"/>
 
-            <Button Grid.Row="6" Grid.Column="1" Content="Save Settings" Command="{Binding CmdSave}" HorizontalContentAlignment="Center" Margin="20,0,20,0"/>
-            <Button Grid.Row="6" Grid.Column="2" Content="Cancel" Command="{Binding CmdCancel}"/>
+            <control:MyButton Grid.Row="6" Grid.Column="1" Text="Save Settings" Command="{Binding CmdSave}" HorizontalContentAlignment="Center" Margin="0,0,20,0"/>
+            <control:MyButton Grid.Row="6" Grid.Column="2" Text="Cancel" Command="{Binding CmdCancel}"/>
         </Grid>
     </StackPanel>
 </local:BasePage>

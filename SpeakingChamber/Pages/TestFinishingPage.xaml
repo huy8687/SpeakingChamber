@@ -4,28 +4,22 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
+      xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="TestFinishingPage">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Congratulations! You have completed the exam!"/>
-        <TextBlock Grid.Row="2" Text="{Binding UserName,StringFormat=Name: {0}}"/>
-        <StackPanel Grid.Row="4">
-            <TextBlock Text="{Binding ExamCode,StringFormat=EXAM CODE: {0}}"/>
-            <TextBlock Text="{Binding ExamDate,StringFormat=Date: {0}}"/>
-        </StackPanel>
-        <Button Grid.Row="6" Content="OK" Command="{Binding CmdOK}"/>
-    </Grid>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <control:MyTextBlock Text="Congratulations! You have completed the exam!" HorizontalAlignment="Center"/>
+        <Grid Margin="30">
+            <StackPanel Margin="30" HorizontalAlignment="Center">
+                <control:MyTextBlock Text="{Binding UserName,StringFormat=Name: {0}}" HorizontalAlignment="Center"/>
+                <StackPanel Margin="0,30,0,0">
+                    <control:MyTextBlock Text="{Binding ExamCode,StringFormat=EXAM CODE: {0}}" HorizontalAlignment="Center"/>
+                    <control:MyTextBlock Text="{Binding ExamDate,StringFormat=Date: {0}}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <control:MyButton Text="OK" Command="{Binding CmdOK}" Width="200" HorizontalAlignment="Center"/>
+    </StackPanel>
 </local:BasePage>

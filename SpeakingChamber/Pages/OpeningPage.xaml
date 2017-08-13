@@ -24,31 +24,6 @@
                 <Hyperlink Command="{Binding CmdOpenOnlineURL}" Foreground="#33ff00">click here</Hyperlink>
                 to continue...
             </TextBlock>
-            <StackPanel Visibility="{Binding IsShowLoginForm}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="180"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding LblName}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Date of Birth:" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Row="1" Grid.Column="1">
-                        <DatePicker SelectedDate="{Binding LblDoB}"/>
-                    </StackPanel>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding LblError}" Foreground="Red"/>
-                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Button Content="Start" Command="{Binding CmdStart}" HorizontalAlignment="Center" Padding="10,0,10,0"/>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
         </Grid>
-
     </StackPanel>
 </local:BasePage>

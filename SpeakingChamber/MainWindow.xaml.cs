@@ -22,7 +22,7 @@ namespace SpeakingChamber
 
         private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (MainFrame.Content is OpeningPage)
+            if (MainFrame.Content is OpeningPage || MainFrame.Content is UserLoginPage)
             {
                 BtnSetting.Visibility = Visibility.Visible;
             }

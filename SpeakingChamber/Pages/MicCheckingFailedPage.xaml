@@ -4,12 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
+      xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MicCheckingFailedPage">
 
     <StackPanel>
-        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="Oops! We are sorry, please contact our Admin or IT officer for further help.&#xA;Thank you for your patience with Excel Language School"/>
-        <Button HorizontalAlignment="Center" Content="OK" Command="{Binding CmdOK}"/>
+        <TextBlock Margin="0,30,0,30" Foreground="White" FontSize="25" HorizontalAlignment="Center" TextAlignment="Center" Text="Oops! We are sorry, please contact our Admin or IT officer for further help.&#xA;Thank you for your patience with Excel Language School"/>
+        <control:MyButton FontSize="23" Width="500" HorizontalAlignment="Center" Text="OK" Command="{Binding CmdOK}"/>
     </StackPanel>
 </local:BasePage>
