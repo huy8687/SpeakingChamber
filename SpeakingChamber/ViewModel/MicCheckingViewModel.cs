@@ -16,7 +16,7 @@ namespace SpeakingChamber.ViewModel
         public bool EnableComplete { get; set; } = true;
 
         public Visibility VisibleConfirm => EnableComplete ? Visibility.Hidden : Visibility.Visible;
-        public Visibility VisibleInputSource => (InputSources != null && InputSources.Count > 1) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility VisibleInputSource => (InputSources != null && InputSources.Count > 1 && !SelectedInput.HasValue) ? Visibility.Visible : Visibility.Hidden;
 
         private WaveFileReader _waveReader;
         private WaveChannel32 _waveChanel;
@@ -84,7 +84,6 @@ namespace SpeakingChamber.ViewModel
         public void OnSelectedInputChanged()
         {
             var devNumber = InputSources.IndexOf(SelectedInput.Value);
-            InputSources = null;
 
             DataMaster.Setting.DevNumber = devNumber;
             DataMaster.Setting.MicChanel = SelectedInput.Value.Channels;
