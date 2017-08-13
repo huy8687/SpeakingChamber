@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeakingChamber"
         mc:Ignorable="d"
-        Title="Chamber Speaking"
+        Title="Chamber Speaking" WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized"
         WindowStartupLocation="CenterScreen" 
         Width="1024" Height="768"
         >

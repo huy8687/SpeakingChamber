@@ -38,9 +38,8 @@ namespace SpeakingChamber.ViewModel
         private async void LoadData()
         {
             IsShowLoading = Visibility.Visible;
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
-                await Task.Delay(2000);
                 DataMaster.LoadData();
             });
             IsShowLoading = Visibility.Hidden;
