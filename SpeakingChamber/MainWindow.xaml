@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="/SpeakingChamber;component/Resources/9.png" Stretch="Fill"/>
         <Image Grid.Row="0" Grid.Column="0" Margin="5" Source="/SpeakingChamber;component/Resources/3.png" Stretch="Fill"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Excel Speaking Chamber" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Excel Speaking Chamber" FontSize="18" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource MyriadPro}"/>
         <Button Grid.Row="0" Grid.Column="3" Background="Transparent" BorderThickness="0" Padding="10" Click="BtnMiniMize_Clicked">
             <Image Source="/SpeakingChamber;component/Resources/minimize.png" Stretch="Fill"/>
         </Button>

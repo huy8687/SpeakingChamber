@@ -18,7 +18,8 @@ namespace SpeakingChamber
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                 {
                     response.Close();
-                    return (response.StatusCode == HttpStatusCode.OK);
+                    var code = (int) response.StatusCode;
+                    return (code >= 200 && code <= 299) || code == (int)HttpStatusCode.Found;
                 }
             }
             catch (Exception ex)

@@ -172,7 +172,7 @@
         <Image Width="150" Source="/SpeakingChamber;component/Resources/6.png" Stretch="UniformToFill"/>
         <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Image Width="20" Source="/SpeakingChamber;component/Resources/5.png" Stretch="Uniform"/>
-            <control:MyTextBlock Margin="15,0,0,0" Text="Speaking Chamber" FontSize="21" VerticalAlignment="Center" Foreground="White"/>
+            <control:MyTextBlock Margin="15,0,0,0" Text="Speaking Chamber" FontSize="21" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SVNAndrogyne}"/>
         </StackPanel>
         <Grid Width="450" Margin="30">
             <Grid.RowDefinitions>
@@ -192,12 +192,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <control:MyTextBlock VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Text="Name:"/>
-                <TextBox VerticalAlignment="Bottom" Margin="10,0,10,0" Grid.Row="0" FontSize="23" Foreground="White" Grid.Column="1" Text="{Binding TbName}" Background="Transparent" BorderThickness="0"/>
+                <control:MyTextBlock FontFamily="{StaticResource Majalla}" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Text="Name:"/>
+                <TextBox FontFamily="{StaticResource Majalla}" VerticalAlignment="Bottom" Margin="10,0,10,0" Grid.Row="0" FontSize="23" Foreground="White" Grid.Column="1" Text="{Binding TbName}" Background="Transparent" BorderThickness="0"/>
                 <Image Grid.Row="0" Margin="0,0,3,5" Grid.Column="2" Width="22" Source="/SpeakingChamber;component/Resources/7.png" Stretch="Uniform"/>
                 <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="White" />
             </Grid>
-            <Grid Grid.Row="1" Margin="0,40,0,20">
+            <Grid Grid.Row="1" Margin="0,30,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="2"/>
@@ -207,8 +207,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <control:MyTextBlock VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Text="Date of Birth:" />
-                <TextBox VerticalAlignment="Bottom" Margin="10,0,10,0" Grid.Row="0" FontSize="23" Foreground="White" Grid.Column="1" Background="Transparent" Text="{Binding TbDob,StringFormat=dd/MM/yyyy}" BorderThickness="0"/>
+                <control:MyTextBlock FontFamily="{StaticResource Majalla}" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Text="Date of Birth:" />
+                <TextBox FontFamily="{StaticResource Majalla}" VerticalAlignment="Bottom" Margin="10,0,10,0" Grid.Row="0" FontSize="23" Foreground="White" Grid.Column="1" Background="Transparent" Text="{Binding TbDob}" BorderThickness="0"/>
                 <DatePicker Grid.Row="0" Grid.Column="2" SelectedDate="{Binding PickerDob, Mode=OneWayToSource}" Background="Transparent" BorderThickness="0" Style="{DynamicResource DatePickerStyle1}" />
                 <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="White"/>
             </Grid>

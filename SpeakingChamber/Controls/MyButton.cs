@@ -43,6 +43,7 @@ namespace SpeakingChamber.Controls
             FontSize = 23;
             Height = 40;
             BorderThickness = new Thickness(0);
+            FontFamily = App.Current.FindResource("Roboto") as FontFamily;
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)

@@ -12,14 +12,14 @@
         <Image Width="275" Source="/SpeakingChamber;component/Resources/2.png" Stretch="UniformToFill"/>
         <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Image Width="40" Source="/SpeakingChamber;component/Resources/5.png" Stretch="UniformToFill"/>
-            <TextBlock Margin="15,0,0,0" Text="Speaking Chamber" FontSize="46" VerticalAlignment="Center" Foreground="White"/>
+            <TextBlock Margin="15,0,0,0" Text="Speaking Chamber" FontSize="46" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SVNAndrogyne}"/>
         </StackPanel>
         <Grid HorizontalAlignment="Center" Margin="0,40,0,0">
             <StackPanel Visibility="{Binding IsShowLoading}">
                 <controls:CircularProgressBar HorizontalAlignment="Center" Height="60"/>
                 <TextBlock Margin="0,15,0,0" Text="Loading..." FontSize="20" HorizontalAlignment="Center" Foreground="White"/>
             </StackPanel>
-            <TextBlock Visibility="{Binding IsShowOnlineURL}" HorizontalAlignment="Center" FontSize="23" Foreground="White">
+            <TextBlock Visibility="{Binding IsShowOnlineURL}" HorizontalAlignment="Center" FontSize="23" Foreground="White" FontFamily="{StaticResource UTMHelve}">
                 Please
                 <Hyperlink Command="{Binding CmdOpenOnlineURL}" Foreground="#33ff00">click here</Hyperlink>
                 to continue...

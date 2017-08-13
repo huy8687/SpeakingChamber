@@ -4,13 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
+      xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
       Title="TestSelectionPage">
 
     <StackPanel x:Name="Root" Margin="20,0,20,20" HorizontalAlignment="Center">
-        <TextBlock Text="Select a test:" FontSize="42" Foreground="White"/>
-        <TextBlock FontSize="20" Text="(Please do not select the tets which you have complete before)" Foreground="White"/>
-        <ListView Margin="0,20,0,0" Background="Transparent" ItemsSource="{Binding Tests}" BorderThickness="0">
+        <control:MyTextBlock FontFamily="{StaticResource Majalla}" Text="Select a test:" FontSize="42"/>
+        <control:MyTextBlock FontFamily="{StaticResource Majalla}" FontSize="20" Text="(Please do not select the tets which you have complete before)"/>
+        <ListView Background="Transparent" ItemsSource="{Binding Tests}" BorderThickness="0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="10"/>
@@ -18,11 +19,11 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Margin="5">
+                    <control:MyTextBlock Margin="5,5,10,5" FontFamily="{StaticResource Majalla}" FontSize="20">
                         <Hyperlink Command="{Binding ElementName=Root, Path=DataContext.CmdTestCode}" CommandParameter="{Binding}" Foreground="White">
-                            <TextBlock Text="{Binding Code}" FontSize="20"/>
+                            <control:MyTextBlock Text="{Binding Code}"/>
                         </Hyperlink>
-                    </TextBlock>
+                    </control:MyTextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

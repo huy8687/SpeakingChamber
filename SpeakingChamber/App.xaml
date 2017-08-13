@@ -15,5 +15,10 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        <FontFamily x:Key="Majalla">./Fonts/majalla.ttf#Sakkal Majalla</FontFamily>
+        <FontFamily x:Key="MyriadPro">./Fonts/MyriadPro-Regular.otf#Myriad Pro</FontFamily>
+        <FontFamily x:Key="Roboto">./Fonts/Roboto-Regular.ttf#Roboto</FontFamily>
+        <FontFamily x:Key="SVNAndrogyne">./Fonts/SVN-Androgyne_0.ttf#SVN-Androgyne</FontFamily>
+        <FontFamily x:Key="UTMHelve">./Fonts/UTM Helve.ttf#UTM Helve</FontFamily>
     </Application.Resources>
 </Application>

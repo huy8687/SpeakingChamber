@@ -11,20 +11,20 @@
 
     <Grid>
         <StackPanel>
-            <control:MyTextBlock FontSize="42" Margin="40,0,0,0" Visibility="{Binding ShowPart}" Text="{Binding CurPart.Name}"/>
+            <control:MyTextBlock FontFamily="{StaticResource Majalla}" FontSize="42" Margin="40,0,0,0" Visibility="{Binding ShowPart}" Text="{Binding CurPart.Name}"/>
             <Grid Visibility="{Binding ShowQuestion}" Margin="0,40,0,0">
                 <MediaElement x:Name="VideoView" Width="500" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="UniformToFill"/>
                 <StackPanel Visibility="{Binding ShowQuestionContent}">
-                    <control:MyTextBlock Margin="100,0,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Content}" FontSize="23"/>
-                    <control:MyTextBlock Margin="100,20,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Guide}" FontSize="23"/>
+                    <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,0,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Content}" FontSize="31"/>
+                    <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,20,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Guide}" FontSize="31"/>
                     <StackPanel Margin="0,40,0,0" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
                         <Image Source="/SpeakingChamber;component/Resources/11.png" Stretch="Fill"/>
-                        <control:MyTextBlock Margin="15,0,0,0" Text="{Binding DecoRemainTime}" FontSize="23" VerticalAlignment="Center"/>
+                        <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="15,0,0,0" Text="{Binding DecoRemainTime}" FontSize="31" VerticalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <control:MyTextBlock Visibility="{Binding ShowOutOfTime}" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Out of time. Moving to next question" FontSize="32"/>
+        <control:MyTextBlock FontFamily="{StaticResource Majalla}" Visibility="{Binding ShowOutOfTime}" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Out of time. Moving to next question..." FontSize="32"/>
         <control:MyButton Command="{Binding CmdContinue}" Visibility="{Binding ShowQuestionContent}" Text="Continue" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Margin="40"/>
     </Grid>
 </local:BasePage>
