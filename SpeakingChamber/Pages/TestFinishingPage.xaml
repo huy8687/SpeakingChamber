@@ -20,6 +20,12 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <control:MyButton Text="OK" Command="{Binding CmdOK}" Width="200" HorizontalAlignment="Center"/>
+        <Grid HorizontalAlignment="Center">
+            <StackPanel Visibility="{Binding ShowSaving}" Orientation="Horizontal" HorizontalAlignment="Center">
+                <control:CircularProgressBar VerticalAlignment="Center"/>
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="Saving recored files to server..." FontSize="20" HorizontalAlignment="Center" Foreground="White"/>
+            </StackPanel>
+            <control:MyButton Visibility="{Binding ShowClose}" Text="OK" Command="{Binding CmdOK}" Width="200" HorizontalAlignment="Center"/>
+        </Grid>
     </StackPanel>
 </local:BasePage>

@@ -12,8 +12,11 @@ namespace SpeakingChamber.ViewModel
     public class TestFinishingViewModel : BaseViewModel
     {
         public string UserName => DataMaster.UserName;
-        public string ExamCode => DataMaster.CurrentTest.Code;
+        public string ExamCode => DataMaster.CurrentTest?.Code;
         public string ExamDate => DataMaster.Date;
+
+        public Visibility ShowSaving { get; private set; }
+        public Visibility ShowClose => ShowSaving == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
 
         public ICommand CmdOK => new Command(() =>
         {
@@ -23,7 +26,9 @@ namespace SpeakingChamber.ViewModel
         public override async Task Appearing()
         {
             await base.Appearing();
+            ShowSaving = Visibility.Visible;
             await Task.Run(() => PushFileToNetwork());
+            ShowSaving = Visibility.Hidden;
         }
 
         private void PushFileToNetwork()
