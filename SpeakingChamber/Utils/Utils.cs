@@ -6,7 +6,7 @@ namespace SpeakingChamber
 {
     public class Utils
     {
-        private const string TEMP_FILE = "temp.xxx";
+        private static string TEMP_FILE => "temp.xxx" + DateTime.Now.Ticks + new Random().Next(10000);
 
         public static bool CheckUrl(string url)
         {
