@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using SpeakingChamber.Extension;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace SpeakingChamber.Model
@@ -18,6 +19,6 @@ namespace SpeakingChamber.Model
         public int MicChanel { get; set; }
 
         [XmlIgnore]
-        public string UserLocalPath => Path.Combine(LocalPath, DataMaster.UserName.Trim() + "_" + DataMaster.CurrentTest?.Code);
+        public string UserLocalPath => Path.Combine(LocalPath, DataMaster.UserName.SupperTrim() + "_" + DataMaster.CurrentTest?.Code);
     }
 }

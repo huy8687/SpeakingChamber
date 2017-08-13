@@ -33,6 +33,10 @@ namespace SpeakingChamber.ViewModel
 
         private void PushFileToNetwork()
         {
+            if (!Utils.CheckPath(DataMaster.Setting.UserLocalPath) || !Utils.CheckPath(DataMaster.Setting.NetworkPath))
+            {
+                return;
+            }
             var di = new DirectoryInfo(DataMaster.Setting.UserLocalPath);
             var diNetwork = new DirectoryInfo(DataMaster.Setting.NetworkPath);
             if (di.Exists && diNetwork.Exists)

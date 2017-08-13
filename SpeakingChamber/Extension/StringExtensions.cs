@@ -17,7 +17,7 @@ namespace SpeakingChamber.Extension
             str = str.Trim(pattern.ToCharArray());
             while (str.Contains($"{pattern}{pattern}"))
             {
-                str.Replace($"{pattern}{pattern}", $"{pattern}");
+                str = str.Replace($"{pattern}{pattern}", $"{pattern}");
             }
             return str;
         }
