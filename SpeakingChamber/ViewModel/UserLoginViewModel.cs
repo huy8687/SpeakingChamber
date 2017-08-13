@@ -18,7 +18,6 @@ namespace SpeakingChamber.ViewModel
         public string TbDob { get; set; }
         public string LblError { get; set; }
         public string PickerDob { get; set; }
-        public bool IsRemember { get; set; }
 
         public ICommand CmdStart => new Command(() =>
         {
@@ -59,17 +58,6 @@ namespace SpeakingChamber.ViewModel
             {
                 DataMaster.UserName = TbName;
                 DataMaster.Date = TbDob;
-                if (IsRemember)
-                {
-                    DataMaster.Setting.UserName = TbName;
-                    DataMaster.Setting.DateOfBirth = TbDob;
-                }
-                else
-                {
-                    DataMaster.Setting.UserName = "";
-                    DataMaster.Setting.DateOfBirth = "";
-                }
-                DataMaster.SaveSetting();
                 Navigation.Navigate(new TestSelectionPage());
             }
         });
@@ -92,21 +80,6 @@ namespace SpeakingChamber.ViewModel
                     TbDob = temp.ToString("dd/MM/yyyy");
                     return;
                 }
-            }
-        }
-
-        public override async Task Appearing()
-        {
-            await base.Appearing();
-            if (!string.IsNullOrWhiteSpace(DataMaster.Setting.UserName))
-            {
-                TbName = DataMaster.Setting.UserName;
-                IsRemember = true;
-            }
-            if (!string.IsNullOrWhiteSpace(DataMaster.Setting.DateOfBirth))
-            {
-                TbDob = DataMaster.Setting.DateOfBirth;
-                IsRemember = true;
             }
         }
     }
