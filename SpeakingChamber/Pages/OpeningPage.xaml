@@ -17,12 +17,12 @@
         <Grid HorizontalAlignment="Center" Margin="0,40,0,0">
             <StackPanel Visibility="{Binding IsShowLoading}">
                 <controls:CircularProgressBar HorizontalAlignment="Center" Height="60"/>
-                <TextBlock Margin="0,15,0,0" Text="LOADING WALLPAPERS ..." FontSize="20" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Margin="0,15,0,0" Text="Loading..." FontSize="20" HorizontalAlignment="Center" Foreground="White"/>
             </StackPanel>
-            <TextBlock Height="23" Visibility="{Binding IsShowOnlineURL}" HorizontalAlignment="Center">
+            <TextBlock Visibility="{Binding IsShowOnlineURL}" HorizontalAlignment="Center" FontSize="23" Foreground="White">
                 Please
-                <Hyperlink Command="{Binding CmdOpenOnlineURL}">click here</Hyperlink>
-                to continue
+                <Hyperlink Command="{Binding CmdOpenOnlineURL}" Foreground="#33ff00">click here</Hyperlink>
+                to continue...
             </TextBlock>
             <StackPanel Visibility="{Binding IsShowLoginForm}">
                 <Grid>

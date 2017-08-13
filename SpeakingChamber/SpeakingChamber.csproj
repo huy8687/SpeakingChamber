@@ -81,6 +81,7 @@
     <Compile Include="Controls\CircularProgressBar.xaml.cs">
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MyButton.cs" />
     <Compile Include="Extension\EnumerableExtensions.cs" />
     <Compile Include="Extension\NavigationExtensions.cs" />
     <Compile Include="Extension\StringExtensions.cs" />

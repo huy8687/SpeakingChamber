@@ -5,25 +5,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:SpeakingChamber.Pages"
+    xmlns:control="clr-namespace:SpeakingChamber.Controls"
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
     Title="MicCheckingPage">
 
     <StackPanel>
-        <TextBlock Text="PLease check your microphone"/>
-        <TextBlock Text="First, please say something to the microphone, then click 'Complete' button"/>
-        <ListBox ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">
+        <TextBlock Margin="15" Text="PLease check your microphone" FontSize="42" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Center" Margin="50,15,50,15" FontSize="25" Foreground="White" Text="First, please say something to the microphone, then click 'Complete' button"/>
+        <ListBox Margin="15" HorizontalAlignment="Center" ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding ProductName}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Complete" Command="{Binding CmdComplete}" IsEnabled="{Binding EnableComplete}"/>
+        <control:MyButton Margin="15" Text="Complete" FontSize="23" Foreground="White" Height="40" Width="500" Command="{Binding CmdComplete}" IsEnabled="{Binding EnableComplete}"/>
         <StackPanel Visibility="{Binding VisibleConfirm}">
-            <TextBlock Text="Now, we are playing back your voice... Could you hear that"/>
-            <Button Content="Yes, proceed to Testing" Command="{Binding CmdYes}" />
-            <Button Content="No" Command="{Binding CmdNo}"/>
+            <TextBlock Margin="15" HorizontalAlignment="Center" FontSize="25" Foreground="White" Text="Now, we are playing back your voice ... Could you hear that?"/>
+            <control:MyButton Margin="15" FontSize="23" Foreground="White" Height="40" Width="500" Text="Yes, proceed to Testing" Command="{Binding CmdYes}" />
+            <control:MyButton Margin="15" FontSize="23" Foreground="White" Height="40" Width="500" Text="No" Command="{Binding CmdNo}"/>
         </StackPanel>
     </StackPanel>
 </local:BasePage>

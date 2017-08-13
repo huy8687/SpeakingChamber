@@ -5,13 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
       Title="TestSelectionPage">
 
-    <StackPanel x:Name="Root">
-        <TextBlock Text="Select a test:"/>
-        <TextBlock Text="Please do not select the tets which you have complete before"/>
-        <ListView ItemsSource="{Binding Tests}">
+    <StackPanel x:Name="Root" Margin="20">
+        <TextBlock Text="Select a test:" FontSize="42" Foreground="White"/>
+        <TextBlock FontSize="20" Text="(Please do not select the tets which you have complete before)" Foreground="White"/>
+        <ListView Margin="0,20,0,0" Background="Transparent" ItemsSource="{Binding Tests}" BorderThickness="0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="10"/>
@@ -19,9 +18,9 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
-                        <Hyperlink Command="{Binding ElementName=Root, Path=DataContext.CmdTestCode}" CommandParameter="{Binding}">
-                            <TextBlock Text="{Binding Code}"/>
+                    <TextBlock Margin="5">
+                        <Hyperlink Command="{Binding ElementName=Root, Path=DataContext.CmdTestCode}" CommandParameter="{Binding}" Foreground="White">
+                            <TextBlock Text="{Binding Code}" FontSize="20"/>
                         </Hyperlink>
                     </TextBlock>
                 </DataTemplate>
