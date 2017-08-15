@@ -3,6 +3,9 @@ using SpeakingChamber.Model;
 using Microsoft.Win32;
 using System.Windows;
 using SpeakingChamber.Extension;
+using NAudio.Wave;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -63,5 +66,32 @@ namespace SpeakingChamber.ViewModel
         {
             Navigation.PopToRoot();
         });
+
+        public IList<WaveInCapabilities> InputSources { get; private set; }
+        public WaveInCapabilities? SelectedInput { get; set; }
+        public Visibility VisibleInputSource => (InputSources != null && InputSources.Count > 1) ? Visibility.Visible : Visibility.Hidden;
+
+        public override async Task Appearing()
+        {
+            await base.Appearing();
+            var temp = new List<WaveInCapabilities>();
+            for (int i = 0; i < WaveIn.DeviceCount; i++)
+            {
+                temp.Add(WaveIn.GetCapabilities(i));
+            }
+            InputSources = temp;
+            if (DataMaster.Setting.DevNumber.HasValue && InputSources.Count > DataMaster.Setting.DevNumber.Value)
+            {
+                SelectedInput = InputSources[DataMaster.Setting.DevNumber.Value];
+            }
+        }
+
+        public void OnSelectedInputChanged()
+        {
+            var devNumber = InputSources.IndexOf(SelectedInput.Value);
+
+            DataMaster.Setting.DevNumber = devNumber;
+            DataMaster.Setting.MicChanel = SelectedInput.Value.Channels;
+        }
     }
 }

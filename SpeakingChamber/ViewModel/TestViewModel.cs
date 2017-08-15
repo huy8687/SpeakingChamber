@@ -216,8 +216,8 @@ namespace SpeakingChamber.ViewModel
             {
                 _inputStream = new WaveIn
                 {
-                    DeviceNumber = DataMaster.Setting.DevNumber,
-                    WaveFormat = new WaveFormat(44100, DataMaster.Setting.MicChanel)
+                    DeviceNumber = DataMaster.Setting.DevNumber.Value,
+                    WaveFormat = new WaveFormat(44100, DataMaster.Setting.MicChanel.Value)
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 

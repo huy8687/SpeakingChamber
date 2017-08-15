@@ -6,6 +6,7 @@ using SpeakingChamber.Model;
 using System.Windows;
 using NAudio.Wave;
 using SpeakingChamber.Pages;
+using System.Linq;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -72,6 +73,10 @@ namespace SpeakingChamber.ViewModel
             else if (temp.Count == 1)
             {
                 SelectedInput = InputSources[0];
+            }
+            else if (DataMaster.Setting.DevNumber.HasValue && InputSources.Count > DataMaster.Setting.DevNumber.Value)
+            {
+                SelectedInput = InputSources[DataMaster.Setting.DevNumber.Value];
             }
         }
 

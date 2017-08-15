@@ -14,9 +14,9 @@ namespace SpeakingChamber.Model
         [XmlElement("networkpath")]
         public string NetworkPath { get; set; }
         [XmlElement("devnumber")]
-        public int DevNumber { get; set; }
+        public int? DevNumber { get; set; }
         [XmlElement("micchanel")]
-        public int MicChanel { get; set; }
+        public int? MicChanel { get; set; }
 
         [XmlIgnore]
         public string UserLocalPath => Path.Combine(LocalPath, DataMaster.UserName.SupperTrim() + "_" + DataMaster.CurrentTest?.Code);

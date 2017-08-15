@@ -12,9 +12,10 @@
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <control:MyTextBlock FontFamily="{StaticResource Majalla}" FontSize="32" Text="Congratulations! You have completed the exam!" HorizontalAlignment="Center"/>
         <Grid Margin="30">
-            <StackPanel Margin="30" HorizontalAlignment="Center">
+            <Image Width="500" Height="300" Source="/SpeakingChamber;component/Resources/13.3.png" Stretch="Fill"/>
+            <StackPanel Margin="30,60,30,30" HorizontalAlignment="Center">
                 <control:MyTextBlock FontSize="32" FontFamily="{StaticResource Majalla}" Text="{Binding UserName,StringFormat=Name: {0}}" HorizontalAlignment="Center"/>
-                <StackPanel Margin="0,30,0,0">
+                <StackPanel Margin="0,40,0,0">
                     <control:MyTextBlock FontSize="32" FontFamily="{StaticResource Majalla}" Text="{Binding ExamCode,StringFormat=EXAM CODE: {0}}" HorizontalAlignment="Center"/>
                     <control:MyTextBlock FontSize="32" FontFamily="{StaticResource Majalla}" Text="{Binding ExamDate,StringFormat=Date: {0}}" HorizontalAlignment="Center"/>
                 </StackPanel>
