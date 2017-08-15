@@ -123,5 +123,18 @@ namespace SpeakingChamber.Model
             catch (Exception) { }
             return result;
         }
+
+        public static void SaveCurrentTestFile(string dirPath)
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Test), root: new XmlRootAttribute("test"));
+                using (TextWriter reader = new StreamWriter(Path.Combine(dirPath, $"questions_{DataMaster.CurrentTest.Code}.txt")))
+                {
+                    serializer.Serialize(reader, DataMaster.CurrentTest);
+                }
+            }
+            catch { }
+        }
     }
 }

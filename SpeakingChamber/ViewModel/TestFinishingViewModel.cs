@@ -27,8 +27,17 @@ namespace SpeakingChamber.ViewModel
         {
             await base.Appearing();
             ShowSaving = Visibility.Visible;
-            await Task.Run(() => PushFileToNetwork());
-            ShowSaving = Visibility.Hidden;
+            await Task.Run(() => PushFileToNetwork()).ContinueWith((task) =>
+            {
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    if (task.Exception != null)
+                    {
+                        MessageBox.Show("Cannot upload files to network path. Your files are saved in local path.");
+                    }
+                    ShowSaving = Visibility.Hidden;
+                });
+            });
         }
 
         private void PushFileToNetwork()
@@ -50,40 +59,15 @@ namespace SpeakingChamber.ViewModel
 
                 foreach (var file in diNetwork.GetFiles())
                 {
-                    try
-                    {
-                        file.Delete();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Fail to clear network!", ex.Message);
-                    }
+                    file.Delete();
                 }
 
                 foreach (var file in di.GetFiles())
                 {
-                    try
-                    {
-                        File.Copy(file.FullName, Path.Combine(diNetwork.FullName, file.Name));
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Fail to copy file to network!", ex.Message);
-                    }
+                    File.Copy(file.FullName, Path.Combine(diNetwork.FullName, file.Name));
                 }
 
-                XmlSerializer serializer = new XmlSerializer(typeof(Test), root: new XmlRootAttribute("test"));
-                using (TextWriter reader = new StreamWriter(Path.Combine(diNetwork.FullName, $"questions_{DataMaster.CurrentTest.Code}.txt")))
-                {
-                    try
-                    {
-                        serializer.Serialize(reader, DataMaster.CurrentTest);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Fail to exam to network!", ex.Message);
-                    }
-                }
+                DataMaster.SaveCurrentTestFile(diNetwork.FullName);
             }
         }
     }
