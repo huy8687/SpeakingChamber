@@ -225,7 +225,7 @@ namespace SpeakingChamber.ViewModel
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 
-                var recordedFileName = $"{DateTime.Now.ToString("ddMMyyyy")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.mp3";
+                var recordedFileName = $"{DateTime.Now.ToString("ddMMyyyy")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Code}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.mp3";
 
                 var path = Path.Combine(DataMaster.Setting.UserLocalPath, recordedFileName);
                 _waveWriter = new WaveFileWriter(path, _inputStream.WaveFormat);
