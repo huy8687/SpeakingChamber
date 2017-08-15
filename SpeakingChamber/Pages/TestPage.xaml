@@ -13,7 +13,12 @@
         <StackPanel>
             <control:MyTextBlock FontFamily="{StaticResource Majalla}" FontSize="42" Margin="40,0,0,0" Visibility="{Binding ShowPart}" Text="{Binding CurPart.Name}"/>
             <Grid Visibility="{Binding ShowQuestion}" Margin="0,40,0,0">
-                <MediaElement x:Name="VideoView" Width="500" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="UniformToFill"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <MediaElement Grid.Column="1" x:Name="VideoView" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="Uniform"/>
                 <StackPanel Visibility="{Binding ShowQuestionContent}">
                     <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,0,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Content}" FontSize="31"/>
                     <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,20,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Guide}" FontSize="31"/>

@@ -165,7 +165,10 @@ namespace SpeakingChamber.ViewModel
         private void SetupShowVideo()
         {
             HandleDisplay(EDisplayType.ShowQuestionVideo);
-            VideoURL = CurQuestion.Video;
+            if (VideoURL != CurQuestion.Video)
+                VideoURL = CurQuestion.Video;
+            else
+                _videoView.Position = new TimeSpan(0);
         }
 
         private void SetupShowQuestion()
