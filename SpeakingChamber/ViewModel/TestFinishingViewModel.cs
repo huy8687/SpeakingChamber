@@ -51,7 +51,7 @@ namespace SpeakingChamber.ViewModel
             if (di.Exists && diNetwork.Exists)
             {
                 var today = DateTime.Now.ToString("ddMMyyyy");
-                var name = DataMaster.UserNamePath;
+                var name = DataMaster.UserNamePath + "_" + DataMaster.UserDobPath;
                 diNetwork = new DirectoryInfo(Path.Combine(DataMaster.Setting.NetworkPath, today));
                 if (!diNetwork.Exists) diNetwork.Create();
                 diNetwork = new DirectoryInfo(Path.Combine(DataMaster.Setting.NetworkPath, today, name));

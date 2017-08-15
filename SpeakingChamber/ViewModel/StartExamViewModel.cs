@@ -8,7 +8,7 @@ namespace SpeakingChamber.ViewModel
     {
         public string DecoCode => "CODE: " + DataMaster.CurrentTest?.Code;
         public string DecoName => "Name: " + DataMaster.UserName;
-        public string DecoDate => "Date: " + DataMaster.Date;
+        public string DecoDate => "Date: " + DataMaster.UserDob;
         public ICommand CmdStart => new Command(()=>
         {
             Navigation.Navigate(new TestPage());

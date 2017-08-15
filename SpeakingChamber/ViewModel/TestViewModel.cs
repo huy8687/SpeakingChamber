@@ -73,6 +73,7 @@ namespace SpeakingChamber.ViewModel
             _timer.Interval = TimeSpan.FromSeconds(1);
 
             _parts = new Queue<Part>(_curTest.Parts);
+            DataMaster.SaveCurrentTestFile(DataMaster.Setting.UserLocalPath);
             NextQuestion();
         }
 
@@ -221,8 +222,9 @@ namespace SpeakingChamber.ViewModel
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 
-                var dob = DateTime.ParseExact(DataMaster.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("ddMMyyyy");
-                var path = Path.Combine(DataMaster.Setting.UserLocalPath, DateTime.Now.ToString("ddMMyyyy") + "_" + DataMaster.UserNamePath + "_" + dob + "_" + _curTest.Code + "_" + (_curTest.Parts.IndexOf(CurPart) + 1) + "_" + (CurPart.Questions.IndexOf(CurQuestion) + 1) + ".mp3");
+                var recordedFileName = $"{DateTime.Now.ToString("ddMMyyyy")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.mp3";
+
+                var path = Path.Combine(DataMaster.Setting.UserLocalPath, recordedFileName);
                 _waveWriter = new WaveFileWriter(path, _inputStream.WaveFormat);
                 _inputStream.StartRecording();
             }

@@ -14,7 +14,8 @@ namespace SpeakingChamber.Model
 
         public static string UserName { get; set; }
         public static string UserNamePath => UserName?.Replace(" ", "");
-        public static string Date { get; set; }
+        public static string UserDob { get; set; }
+        public static string UserDobPath => UserDob != null ? UserDob.Replace("/", "") : null;
 
         private const string DB_FILE = "db.xml";
         private const string SETTING_FILE = "setting.xml";

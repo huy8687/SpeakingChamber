@@ -19,6 +19,6 @@ namespace SpeakingChamber.Model
         public int? MicChanel { get; set; }
 
         [XmlIgnore]
-        public string UserLocalPath => Path.Combine(LocalPath, DataMaster.UserName.SupperTrim() + "_" + DataMaster.CurrentTest?.Code);
+        public string UserLocalPath => Path.Combine(LocalPath, DataMaster.UserNamePath + "_" + DataMaster.UserDobPath);
     }
 }
