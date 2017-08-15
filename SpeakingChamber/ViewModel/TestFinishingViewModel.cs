@@ -13,7 +13,7 @@ namespace SpeakingChamber.ViewModel
     {
         public string UserName => DataMaster.UserName;
         public string ExamCode => DataMaster.CurrentTest?.Code;
-        public string ExamDate => DataMaster.Date;
+        public string ExamDate => DateTime.Now.ToString("dd/MM/yyyy");
 
         public Visibility ShowSaving { get; private set; }
         public Visibility ShowClose => ShowSaving == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
