@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <MediaElement Grid.Column="1" x:Name="VideoView" Visibility="{Binding ShowQuestionVideo}" Source="{Binding VideoURL}" Stretch="Uniform"/>
-                <StackPanel Visibility="{Binding ShowQuestionContent}">
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Visibility="{Binding ShowQuestionContent}">
                     <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,0,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Content}" FontSize="31"/>
                     <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,20,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Guide}" FontSize="31"/>
                     <StackPanel Margin="0,40,0,0" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
