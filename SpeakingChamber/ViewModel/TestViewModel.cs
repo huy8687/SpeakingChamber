@@ -10,6 +10,7 @@ using NAudio.Wave;
 using System.Windows.Input;
 using SpeakingChamber.Pages;
 using System.Globalization;
+using NAudio.Lame;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -108,7 +109,7 @@ namespace SpeakingChamber.ViewModel
                 else
                     SetupShowQuestion();
             else
-                Navigation.Navigate(new TestFinishingPage());
+                throw new InvalidOperationException("CurQuestion cannot be null");
         }
 
         private void _timer_Tick(object sender, EventArgs e)
@@ -131,15 +132,25 @@ namespace SpeakingChamber.ViewModel
             }
         }
 
-        private void NextQuestion()
+        private async void NextQuestion()
         {
             if (_questions != null && _questions.Count > 0)
                 CurQuestion = _questions.Dequeue();
             else
+            {
                 if (_parts.Count > 0)
-                CurPart = _parts.Dequeue();
-            else
-                Navigation.Navigate(new TestFinishingPage());
+                    CurPart = _parts.Dequeue();
+                else
+                {
+                    if (_convertMp3Task != null && !_convertMp3Task.IsCompleted)
+                        await _convertMp3Task.ContinueWith(task =>
+                            {
+                                Application.Current.Dispatcher.Invoke(() => Navigation.Navigate(new TestFinishingPage()));
+                            });
+                    else
+                        Navigation.Navigate(new TestFinishingPage());
+                }
+            }
         }
 
         private void _videoView_MediaOpened(object sender, RoutedEventArgs e)
@@ -214,6 +225,12 @@ namespace SpeakingChamber.ViewModel
         private WaveIn _inputStream;
         private WaveFileWriter _waveWriter;
 
+        private readonly IList<string> _files = new List<string>();
+        private readonly Queue<string> _queueFiles = new Queue<string>();
+        private string _curPath;
+        private bool _isRunning;
+        private Task _convertMp3Task;
+
         public void StartRecord()
         {
             try
@@ -225,10 +242,10 @@ namespace SpeakingChamber.ViewModel
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 
-                var recordedFileName = $"{DateTime.Now.ToString("ddMMyyyy")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Code}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.mp3";
+                var recordedFileName = $"{DateTime.Now.ToString("ddMMyyyy")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Code}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.wav";
+                _curPath = Path.Combine(DataMaster.Setting.UserLocalPath, recordedFileName);
 
-                var path = Path.Combine(DataMaster.Setting.UserLocalPath, recordedFileName);
-                _waveWriter = new WaveFileWriter(path, _inputStream.WaveFormat);
+                _waveWriter = new WaveFileWriter(_curPath, _inputStream.WaveFormat);
                 _inputStream.StartRecording();
             }
             catch
@@ -270,6 +287,34 @@ namespace SpeakingChamber.ViewModel
                 _waveWriter.Close();
                 _waveWriter.Dispose();
                 _waveWriter = null;
+            }
+            ConvertToMp3();
+        }
+
+        private void ConvertToMp3()
+        {
+            if (string.IsNullOrWhiteSpace(_curPath) || _files.Contains(_curPath))
+            {
+                return;
+            }
+            _files.Add(_curPath);
+            _queueFiles.Enqueue(_curPath);
+            if (!_isRunning)
+            {
+                _convertMp3Task = Task.Run(() =>
+                {
+                    _isRunning = true;
+                    while (_queueFiles.Count > 0)
+                    {
+                        var wavPath = _queueFiles.Dequeue();
+                        var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
+                        using (var reader = new AudioFileReader(wavPath))
+                        using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
+                            reader.CopyTo(writer);
+                        File.Delete(wavPath);
+                    }
+                    _isRunning = false;
+                });
             }
         }
     }
