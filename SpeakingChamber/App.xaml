@@ -6,7 +6,11 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ImageBrush x:Key="MyTextBoxBackground" ImageSource="/SpeakingChamber;component/Resources/15.png"></ImageBrush>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="CaretBrush" Value="White"/>
+        </Style>
         <Style x:Key="MyTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="CaretBrush" Value="White"/>
             <Setter Property="Background" Value="{StaticResource MyTextBoxBackground}"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Foreground" Value="White"/>
