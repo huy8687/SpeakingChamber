@@ -7,11 +7,20 @@
       xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
       Title="TestSelectionPage">
-
-    <StackPanel x:Name="Root" Margin="20,0,20,20" HorizontalAlignment="Center">
-        <control:MyTextBlock FontFamily="{StaticResource Majalla}" Text="Select a test:" FontSize="42"/>
-        <control:MyTextBlock FontFamily="{StaticResource Majalla}" FontSize="20" Text="(Please do not select the tets which you have complete before)"/>
-        <ListView Background="Transparent" ItemsSource="{Binding Tests}" BorderThickness="0">
+    <Grid x:Name="Root">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="84*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <control:MyTextBlock Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource Majalla}" Text="Select a test:" FontSize="42"/>
+        <control:MyTextBlock Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource Majalla}" FontSize="20" Text="(Please do not select the tets which you have complete before)"/>
+        <ListView Grid.Row="2" Grid.Column="1" Background="Transparent" ItemsSource="{Binding Tests}" BorderThickness="0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="10"/>
@@ -27,5 +36,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </Grid>
 </local:BasePage>
