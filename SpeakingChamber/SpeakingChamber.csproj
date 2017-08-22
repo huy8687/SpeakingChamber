@@ -99,6 +99,9 @@
     <Compile Include="Model\Test.cs" />
     <Compile Include="Model\DataMaster.cs" />
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\InstructionPage.xaml.cs">
+      <DependentUpon>InstructionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MicCheckingFailedPage.xaml.cs">
       <DependentUpon>MicCheckingFailedPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,7 @@
     </Compile>
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\InstructionViewModel.cs" />
     <Compile Include="ViewModel\MicCheckingFailedViewModel.cs" />
     <Compile Include="ViewModel\MicCheckingViewModel.cs" />
     <Compile Include="ViewModel\OpeningViewModel.cs" />
@@ -157,6 +161,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\InstructionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MicCheckingFailedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

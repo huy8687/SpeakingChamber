@@ -58,7 +58,7 @@ namespace SpeakingChamber.ViewModel
             {
                 DataMaster.UserName = TbName;
                 DataMaster.UserDob = TbDob;
-                Navigation.Navigate(new TestSelectionPage());
+                Navigation.Navigate(new InstructionPage());
             }
         });
 

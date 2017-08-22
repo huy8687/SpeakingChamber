@@ -1,0 +1,63 @@
+﻿<local:BasePage x:Class="SpeakingChamber.Pages.InstructionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpeakingChamber.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1000"
+      Title="InstructionPage"
+      xmlns:controls="clr-namespace:SpeakingChamber.Controls">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <controls:MyTextBlock Grid.Row="0" Text="Instruction" Margin="30,0,0,0"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Visibility="{Binding ShowMenu}" Margin="30,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <controls:MyTextBlock Grid.Row="0" Grid.Column="0" Margin="0,20,0,0" Text="If this is the first time you use Excel Speaking Chamber, you're recommended to see an instrctional video"/>
+                <controls:MyButton Grid.Row="0" Grid.Column="1" Margin="20,20,0,0" Text="Click here" Command="{Binding CmdStart}"/>
+                <controls:MyTextBlock Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Text="Or, if you want, you can skip the instrctional video to start testing immediately"/>
+                <controls:MyButton  Grid.Row="1" Grid.Column="1" Margin="20,20,0,0" Text="Skip instruction" Command="{Binding CmdSkipInstruction}"/>
+            </Grid>
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding ShowVideo}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="86*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <MediaElement Grid.Column="1" Grid.Row="0" x:Name="VideoView" Source="{Binding VideoURL}"/>
+                <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <controls:MyButton Grid.Column="1" Text="Skip" Command="{Binding CmdSkipVideo}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:BasePage>
