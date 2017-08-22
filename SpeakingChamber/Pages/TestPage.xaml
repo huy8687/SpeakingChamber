@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SpeakingChamber.Pages"
       xmlns:control="clr-namespace:SpeakingChamber.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="1000" d:DesignWidth="1000"
       Title="TestPage">
 
     <Grid>
@@ -22,10 +22,18 @@
                 <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Visibility="{Binding ShowQuestionContent}">
                     <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,0,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Content}" FontSize="31"/>
                     <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="100,20,0,0" DataContext="{Binding CurQuestion}" Text="{Binding Guide}" FontSize="31"/>
-                    <StackPanel Margin="0,40,0,0" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-                        <Image Source="/SpeakingChamber;component/Resources/11.png" Stretch="Fill"/>
-                        <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="15,0,0,0" Text="{Binding DecoRemainTime}" FontSize="31" VerticalAlignment="Center"/>
-                    </StackPanel>
+                    <Grid Margin="0,40,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <control:MyTextBlock Grid.Column="0" Visibility="{Binding ShowPreparation}" Margin="0,0,20,0" Text="Remaining time for preparation:" TextAlignment="Right"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Height="40">
+                            <Image Source="/SpeakingChamber;component/Resources/11.png" Stretch="Fill"/>
+                            <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="15,0,0,0" Text="{Binding DecoRemainTime}" FontSize="31" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Grid>
         </StackPanel>

@@ -13,5 +13,7 @@ namespace SpeakingChamber.Model
         public string Guide { get; set; }
         [XmlElement("duration")]
         public int Duration { get; set; }
+        [XmlElement("preparationTime")]
+        public int PreparationTime { get; set; }
     }
 }
