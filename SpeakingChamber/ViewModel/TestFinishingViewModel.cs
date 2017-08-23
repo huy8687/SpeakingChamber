@@ -56,17 +56,17 @@ namespace SpeakingChamber.ViewModel
             var diNetwork = new DirectoryInfo(DataMaster.Setting.NetworkPath);
             if (di.Exists && diNetwork.Exists)
             {
-                var today = DateTime.Now.ToString("ddMMyyyy");
+                var today = DateTime.Now.ToString("yyyyMMdd");
                 var name = DataMaster.UserNamePath + "_" + DataMaster.UserDobPath;
                 diNetwork = new DirectoryInfo(Path.Combine(DataMaster.Setting.NetworkPath, today));
                 if (!diNetwork.Exists) diNetwork.Create();
                 diNetwork = new DirectoryInfo(Path.Combine(DataMaster.Setting.NetworkPath, today, name));
                 if (!diNetwork.Exists) diNetwork.Create();
 
-                foreach (var file in diNetwork.GetFiles())
-                {
-                    file.Delete();
-                }
+                //foreach (var file in diNetwork.GetFiles())
+                //{
+                //    file.Delete();
+                //}
 
                 foreach (var file in di.GetFiles())
                 {

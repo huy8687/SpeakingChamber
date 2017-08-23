@@ -45,7 +45,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <control:MyButton Grid.Row="0" HorizontalAlignment="Center" Command="{Binding CmdContinue}" Text="{Binding BtnContinueText}" Width="220"/>
-            <control:MyTextBlock Margin="0,10,0,0" Grid.Row="1" HorizontalAlignment="Center" Text="{Binding TbNoteForBtnCountinue}" FontSize="22" FontFamily="{StaticResource Majalla}"/>
+            <control:MyTextBlock Margin="0,10,0,0" Grid.Row="1" HorizontalAlignment="Center" Text="{Binding TbNoteForBtnCountinue}" FontSize="25" FontFamily="{StaticResource Majalla}"/>
         </Grid>
     </Grid>
 </local:BasePage>

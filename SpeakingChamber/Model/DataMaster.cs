@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace SpeakingChamber.Model
         public static string UserName { get; set; }
         public static string UserNamePath => UserName?.Replace(" ", "");
         public static string UserDob { get; set; }
-        public static string UserDobPath => UserDob != null ? UserDob.Replace("/", "") : null;
+        public static string UserDobPath => UserDob != null ? DateTime.ParseExact(UserDob, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd") : null;
 
         private const string DB_FILE = "db.xml";
         private const string SETTING_FILE = "setting.xml";

@@ -65,8 +65,8 @@ namespace SpeakingChamber.ViewModel
             var di = new DirectoryInfo(DataMaster.Setting.UserLocalPath);
             if (di.Exists)
             {
-                foreach (var file in di.GetFiles()) file.Delete();
-                foreach (var dir in di.GetDirectories()) dir.Delete(true);
+                //foreach (var file in di.GetFiles()) file.Delete();
+                //foreach (var dir in di.GetDirectories()) dir.Delete(true);
             }
             else
             {
@@ -263,7 +263,7 @@ namespace SpeakingChamber.ViewModel
         private readonly IList<string> _files = new List<string>();
         private readonly Queue<string> _queueFiles = new Queue<string>();
         private string _curPath;
-        private bool _isRunning;
+        //private bool _isRunning;
         //private Task _convertMp3Task;
 
         public void StartRecord()
@@ -277,7 +277,7 @@ namespace SpeakingChamber.ViewModel
                 };
                 _inputStream.DataAvailable += InputStreamOnDataAvailable;
 
-                var recordedFileName = $"{DateTime.Now.ToString("ddMMyyyy")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Code}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.wav";
+                var recordedFileName = $"{DateTime.Now.ToString("yyyyMMdd")}_{DataMaster.UserNamePath}_{DataMaster.UserDobPath}_{_curTest.Code}_{_curTest.Parts.IndexOf(CurPart) + 1}_{CurPart.Questions.IndexOf(CurQuestion) + 1}.wav";
                 _curPath = Path.Combine(DataMaster.Setting.UserLocalPath, recordedFileName);
                 CurQuestion.LocalRecordedPath = _curPath.Substring(0, _curPath.Length - 4) + ".mp3";
 
@@ -337,17 +337,23 @@ namespace SpeakingChamber.ViewModel
             _queueFiles.Enqueue(_curPath);
             //if (!_isRunning)
             //{
-                //_convertMp3Task = Task.Run(() =>
-                //{
-                //    _isRunning = true;
-                //    while (_queueFiles.Count > 0)
-                //    {
-                        var wavPath = _queueFiles.Dequeue();
-                        var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
-                        using (var reader = new AudioFileReader(wavPath))
-                        using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
-                            reader.CopyTo(writer);
-                        File.Delete(wavPath);
+            //_convertMp3Task = Task.Run(() =>
+            //{
+            //    _isRunning = true;
+            //    while (_queueFiles.Count > 0)
+            //    {
+            try
+            {
+                var wavPath = _queueFiles.Dequeue();
+                var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
+                using (var reader = new AudioFileReader(wavPath))
+                using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
+                    reader.CopyTo(writer);
+                File.Delete(wavPath);
+            }
+            catch (Exception)
+            {
+            }
                 //    }
                 //    _isRunning = false;
                 //}).ContinueWith((task) => _isRunning = false); ;
