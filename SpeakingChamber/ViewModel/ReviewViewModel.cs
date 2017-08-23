@@ -35,7 +35,11 @@ namespace SpeakingChamber.ViewModel
             }
         }
 
-        public ICommand CmdStop => new Command(() => Navigation.PopToRoot());
+        public ICommand CmdStop => new Command(() =>
+        {
+            State = null;
+            Navigation.PopToRoot();
+        });
         public ICommand CmdNext => new Command(() => NextQuestion());
 
         private readonly MediaElement _videoView;
@@ -72,7 +76,7 @@ namespace SpeakingChamber.ViewModel
                 CurQuestion = _questions.Dequeue();
             else
             {
-                if (_parts.Count > 0)
+                if (_parts != null && _parts.Count > 0)
                     CurPart = _parts.Dequeue();
                 else
                     Navigation.PopToRoot();

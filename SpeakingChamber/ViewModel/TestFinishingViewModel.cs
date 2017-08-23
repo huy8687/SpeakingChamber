@@ -63,10 +63,10 @@ namespace SpeakingChamber.ViewModel
                 diNetwork = new DirectoryInfo(Path.Combine(DataMaster.Setting.NetworkPath, today, name));
                 if (!diNetwork.Exists) diNetwork.Create();
 
-                //foreach (var file in diNetwork.GetFiles())
-                //{
-                //    file.Delete();
-                //}
+                foreach (var file in diNetwork.GetFiles())
+                {
+                    file.Delete();
+                }
 
                 foreach (var file in di.GetFiles())
                 {

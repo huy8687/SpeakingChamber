@@ -65,8 +65,8 @@ namespace SpeakingChamber.ViewModel
             var di = new DirectoryInfo(DataMaster.Setting.UserLocalPath);
             if (di.Exists)
             {
-                //foreach (var file in di.GetFiles()) file.Delete();
-                //foreach (var dir in di.GetDirectories()) dir.Delete(true);
+                foreach (var file in di.GetFiles()) file.Delete();
+                foreach (var dir in di.GetDirectories()) dir.Delete(true);
             }
             else
             {
@@ -91,7 +91,7 @@ namespace SpeakingChamber.ViewModel
             StopRecord();
             _timer.Stop();
             _timer.Tick -= _timer_Tick;
-            _videoView.Stop();
+            VideoURL = null;
             _videoView.MediaOpened -= _videoView_MediaOpened;
             _videoView.MediaFailed -= _videoView_MediaFailed;
             _videoView.MediaEnded -= _videoView_MediaEnded;
@@ -145,7 +145,7 @@ namespace SpeakingChamber.ViewModel
             }
         }
 
-        private async void NextQuestion()
+        private void NextQuestion()
         {
             if (_questions != null && _questions.Count > 0)
                 CurQuestion = _questions.Dequeue();
@@ -155,6 +155,7 @@ namespace SpeakingChamber.ViewModel
                     CurPart = _parts.Dequeue();
                 else
                 {
+                    ShowQuestion = Visibility.Hidden;
                     //if (_convertMp3Task != null && !_convertMp3Task.IsCompleted)
                     //    await _convertMp3Task.ContinueWith(task =>
                     //        {
@@ -263,8 +264,8 @@ namespace SpeakingChamber.ViewModel
         private readonly IList<string> _files = new List<string>();
         private readonly Queue<string> _queueFiles = new Queue<string>();
         private string _curPath;
-        //private bool _isRunning;
-        //private Task _convertMp3Task;
+        private bool _isRunning;
+        private Task _convertMp3Task;
 
         public void StartRecord()
         {
@@ -337,26 +338,20 @@ namespace SpeakingChamber.ViewModel
             _queueFiles.Enqueue(_curPath);
             //if (!_isRunning)
             //{
-            //_convertMp3Task = Task.Run(() =>
-            //{
-            //    _isRunning = true;
-            //    while (_queueFiles.Count > 0)
+            //    _convertMp3Task = Task.Run(() =>
             //    {
-            try
-            {
-                var wavPath = _queueFiles.Dequeue();
-                var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
-                using (var reader = new AudioFileReader(wavPath))
-                using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
-                    reader.CopyTo(writer);
-                File.Delete(wavPath);
-            }
-            catch (Exception)
-            {
-            }
-                //    }
-                //    _isRunning = false;
-                //}).ContinueWith((task) => _isRunning = false); ;
+            //        _isRunning = true;
+            //        while (_queueFiles.Count > 0)
+            //        {
+                        var wavPath = _queueFiles.Dequeue();
+                        var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
+                        using (var reader = new AudioFileReader(wavPath))
+                        using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
+                            reader.CopyTo(writer);
+                        File.Delete(wavPath);
+            //        }
+            //        _isRunning = false;
+            //    }).ContinueWith((task) => _isRunning = false); ;
             //}
         }
     }
