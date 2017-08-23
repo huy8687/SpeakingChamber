@@ -13,6 +13,7 @@
     <StackPanel>
         <StackPanel HorizontalAlignment="Center">
             <control:MyTextBlock FontFamily="{StaticResource Majalla}" Margin="15,0,0,15" Text="Please check your microphone" FontSize="42"/>
+            <control:RecordingView IsRecording="{Binding IsRecording}"/>
             <control:MyTextBlock  FontFamily="{StaticResource Majalla}" HorizontalAlignment="Center" Margin="50,0,50,0" FontSize="25" Text="First, please say something to the microphone, then click 'Complete' button"/>
         </StackPanel>
         <ListBox Margin="15" HorizontalAlignment="Center" ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">

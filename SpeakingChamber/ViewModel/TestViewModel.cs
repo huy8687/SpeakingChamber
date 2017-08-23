@@ -26,12 +26,18 @@ namespace SpeakingChamber.ViewModel
         public string DecoRemainTime => TimeSpan.FromSeconds(RemainTime).ToString(@"mm\:ss");
         public int RemainTime { get; private set; }
 
+        public Visibility ShowRecording { get; set; } = Visibility.Hidden;
         public Visibility ShowQuestionVideo { get; set; } = Visibility.Hidden;
         public string VideoURL { get; private set; }
 
         public Visibility ShowQuestionContent { get; set; } = Visibility.Hidden;
 
         public Visibility ShowPreparation { get; set; } = Visibility.Hidden;
+
+        public string BtnContinueText { get; set; }
+        public string TbNoteForBtnCountinue { get; set; }
+
+        private bool _isFinish => _parts != null && _parts.Count == 0 && _questions != null && _questions.Count == 0;
 
         public ICommand CmdContinue => new Command(() =>
         {
@@ -206,6 +212,8 @@ namespace SpeakingChamber.ViewModel
             }
             else
             {
+                BtnContinueText = !_isFinish ? "Stop recording" : "Complete the exam";
+                TbNoteForBtnCountinue = !_isFinish ? "and move on to the next question" : string.Empty;
                 HandleDisplay(EDisplayType.ShowQuestionContent);
                 RemainTime = CurQuestion.Duration;
 
@@ -228,19 +236,19 @@ namespace SpeakingChamber.ViewModel
             {
                 case EDisplayType.ShowQuestionVideo:
                     ShowPart = ShowQuestion = ShowQuestionVideo = Visibility.Visible;
-                    ShowOutOfTime = ShowQuestionContent = ShowPreparation = Visibility.Hidden;
+                    ShowOutOfTime = ShowQuestionContent = ShowPreparation = ShowRecording = Visibility.Hidden;
                     break;
                 case EDisplayType.ShowOutOfTime:
-                    ShowQuestion = ShowQuestionVideo = ShowQuestionContent = ShowPart = ShowPreparation = Visibility.Hidden;
+                    ShowQuestion = ShowQuestionVideo = ShowQuestionContent = ShowPart = ShowPreparation = ShowRecording = Visibility.Hidden;
                     ShowOutOfTime = Visibility.Visible;
                     break;
                 case EDisplayType.ShowQuestionContent:
-                    ShowPart = ShowQuestion = ShowQuestionContent = Visibility.Visible;
+                    ShowPart = ShowQuestion = ShowQuestionContent = ShowRecording = Visibility.Visible;
                     ShowOutOfTime = ShowQuestionVideo = ShowPreparation = Visibility.Hidden;
                     break;
                 case EDisplayType.ShowPreparation:
                     ShowPart = ShowQuestion = ShowQuestionContent = ShowPreparation = Visibility.Visible;
-                    ShowOutOfTime = ShowQuestionVideo = Visibility.Hidden;
+                    ShowOutOfTime = ShowQuestionVideo = ShowRecording = Visibility.Hidden;
                     break;
             }
         }
@@ -341,7 +349,7 @@ namespace SpeakingChamber.ViewModel
                         File.Delete(wavPath);
                     }
                     _isRunning = false;
-                });
+                }).ContinueWith((task) => _isRunning = false); ;
             }
         }
     }

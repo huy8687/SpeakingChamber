@@ -15,6 +15,7 @@ namespace SpeakingChamber.ViewModel
         public IList<WaveInCapabilities> InputSources { get; private set; }
         public WaveInCapabilities? SelectedInput { get; set; }
         public bool EnableComplete { get; set; } = true;
+        public bool IsRecording => EnableComplete;
 
         public Visibility VisibleConfirm => EnableComplete ? Visibility.Hidden : Visibility.Visible;
         public Visibility VisibleInputSource => (InputSources != null && InputSources.Count > 1 && !SelectedInput.HasValue) ? Visibility.Visible : Visibility.Hidden;
