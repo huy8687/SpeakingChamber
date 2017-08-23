@@ -28,6 +28,7 @@ namespace SpeakingChamber.ViewModel
 
         protected override void HandleExit()
         {
+            _videoView.Stop();
             _videoView.MediaFailed -= _videoView_MediaFailed;
             _videoView.MediaEnded -= _videoView_MediaEnded;
         }
