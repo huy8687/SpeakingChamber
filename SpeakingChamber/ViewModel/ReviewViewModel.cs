@@ -29,11 +29,9 @@ namespace SpeakingChamber.ViewModel
             get => _state;
             set
             {
-                if (_state != null)
-                    _state.Exit();
+                _state?.Exit();
                 _state = value;
-                if (_state != null)
-                    _state.Enter();
+                _state?.Enter();
             }
         }
 
