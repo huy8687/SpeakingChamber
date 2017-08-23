@@ -6,6 +6,7 @@ using System.IO;
 using System.Xml.Serialization;
 using SpeakingChamber.Extension;
 using System.Windows;
+using SpeakingChamber.Pages;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -18,7 +19,12 @@ namespace SpeakingChamber.ViewModel
         public Visibility ShowSaving { get; private set; }
         public Visibility ShowClose => ShowSaving == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
 
-        public ICommand CmdOK => new Command(() =>
+        public ICommand CmdYes => new Command(() =>
+        {
+            Navigation.Navigate(new ReviewPage());
+        });
+
+        public ICommand CmdNo => new Command(() =>
         {
             Navigation.PopToRoot();
         });

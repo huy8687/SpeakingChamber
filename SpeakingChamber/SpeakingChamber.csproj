@@ -114,6 +114,9 @@
     <Compile Include="Pages\OpeningPage.xaml.cs">
       <DependentUpon>OpeningPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ReviewPage.xaml.cs">
+      <DependentUpon>ReviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SettingPasswordPage.xaml.cs">
       <DependentUpon>SettingPasswordPage.xaml</DependentUpon>
     </Compile>
@@ -136,11 +139,16 @@
       <DependentUpon>UserLoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Domain\Review\BaseReviewState.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\InstructionViewModel.cs" />
+    <Compile Include="Domain\Review\IReview.cs" />
     <Compile Include="ViewModel\MicCheckingFailedViewModel.cs" />
     <Compile Include="ViewModel\MicCheckingViewModel.cs" />
     <Compile Include="ViewModel\OpeningViewModel.cs" />
+    <Compile Include="Domain\Review\ReviewQuestionState.cs" />
+    <Compile Include="Domain\Review\ReviewVideoState.cs" />
+    <Compile Include="ViewModel\ReviewViewModel.cs" />
     <Compile Include="ViewModel\SettingPasswordViewModel.cs" />
     <Compile Include="ViewModel\SettingUpdatingViewModel.cs" />
     <Compile Include="ViewModel\StartExamViewModel.cs" />
@@ -181,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OpeningPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,6 +273,7 @@
     <Content Include="Resources\recording.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SpeakingChamber.exe" />
     <Resource Include="excelicon.ico" />
     <Content Include="libmp3lame.32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

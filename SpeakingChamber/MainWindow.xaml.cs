@@ -30,7 +30,6 @@ namespace SpeakingChamber
             {
                 BtnSetting.Visibility = Visibility.Hidden;
             }
-
         }
 
         private void BtnMiniMize_Clicked(object sender, RoutedEventArgs e)

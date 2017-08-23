@@ -15,5 +15,8 @@ namespace SpeakingChamber.Model
         public int Duration { get; set; }
         [XmlElement("preparationTime")]
         public int PreparationTime { get; set; }
+
+        [XmlIgnore]
+        public string LocalRecordedPath { get; set; }
     }
 }
