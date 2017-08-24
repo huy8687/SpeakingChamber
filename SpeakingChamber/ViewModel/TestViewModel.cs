@@ -144,7 +144,10 @@ namespace SpeakingChamber.ViewModel
                         SetupShowTimeOut();
                         break;
                     case EDisplayType.ShowPreparation:
-                        SetupShowQuestion();
+                        if (!string.IsNullOrWhiteSpace(CurQuestion.Video2) && File.Exists(CurQuestion.Video2))
+                            SetupShowEndOfPreparation();
+                        else
+                            SetupShowQuestion();
                         break;
                 }
             }
@@ -168,7 +171,7 @@ namespace SpeakingChamber.ViewModel
                     //            Application.Current.Dispatcher.Invoke(() => Navigation.Navigate(new TestFinishingPage()));
                     //        });
                     //else
-                        Navigation.Navigate(new TestFinishingPage());
+                    Navigation.Navigate(new TestFinishingPage());
                 }
             }
             this.Log("NextQuestion End");
@@ -212,9 +215,19 @@ namespace SpeakingChamber.ViewModel
             _timer.Start();
         }
 
+
+        private void SetupShowEndOfPreparation()
+        {
+            HandleDisplay(EDisplayType.ShowEndOfPreparation);
+            if (VideoURL != CurQuestion.Video2)
+                VideoURL = CurQuestion.Video2;
+            else
+                _videoView.Position = new TimeSpan(0);
+        }
+
         private void SetupShowQuestion()
         {
-            if (CurQuestion.PreparationTime > 0 && _lastState != EDisplayType.ShowPreparation)
+            if (CurQuestion.PreparationTime > 0 && _lastState != EDisplayType.ShowPreparation && _lastState != EDisplayType.ShowEndOfPreparation)
             {
                 SetupShowPreparation();
             }
@@ -257,6 +270,10 @@ namespace SpeakingChamber.ViewModel
                 case EDisplayType.ShowPreparation:
                     ShowPart = ShowQuestion = ShowQuestionContent = ShowPreparation = Visibility.Visible;
                     ShowOutOfTime = ShowQuestionVideo = ShowRecording = Visibility.Hidden;
+                    break;
+                case EDisplayType.ShowEndOfPreparation:
+                    ShowPart = ShowQuestion = ShowQuestionVideo = Visibility.Visible;
+                    ShowOutOfTime = ShowQuestionContent = ShowPreparation = ShowRecording = Visibility.Hidden;
                     break;
             }
         }
@@ -350,12 +367,12 @@ namespace SpeakingChamber.ViewModel
             //        _isRunning = true;
             //        while (_queueFiles.Count > 0)
             //        {
-                        var wavPath = _queueFiles.Dequeue();
-                        var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
-                        using (var reader = new AudioFileReader(wavPath))
-                        using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
-                            reader.CopyTo(writer);
-                        File.Delete(wavPath);
+            var wavPath = _queueFiles.Dequeue();
+            var mp3Path = wavPath.Substring(0, wavPath.Length - 4) + ".mp3";
+            using (var reader = new AudioFileReader(wavPath))
+            using (var writer = new LameMP3FileWriter(mp3Path, reader.WaveFormat, 128))
+                reader.CopyTo(writer);
+            File.Delete(wavPath);
             //        }
             //        _isRunning = false;
             //    }).ContinueWith((task) => _isRunning = false); ;
@@ -368,6 +385,7 @@ namespace SpeakingChamber.ViewModel
         ShowQuestionVideo,
         ShowOutOfTime,
         ShowQuestionContent,
-        ShowPreparation
+        ShowPreparation,
+        ShowEndOfPreparation
     }
 }

@@ -7,6 +7,8 @@ namespace SpeakingChamber.Model
     {
         [XmlElement("video")]
         public string Video { get; set; }
+        [XmlElement("video2")]
+        public string Video2 { get; set; }
         [XmlElement("content")]
         public string Content { get; set; }
         [XmlElement("guide")]
