@@ -38,7 +38,7 @@ namespace SpeakingChamber.ViewModel
         public ICommand CmdStop => new Command(() =>
         {
             State = null;
-            Navigation.PopToRoot();
+            Navigation.GoBack();
         });
         public ICommand CmdNext => new Command(() => NextQuestion());
 
@@ -81,7 +81,7 @@ namespace SpeakingChamber.ViewModel
                 else
                 {
                     State = null;
-                    Navigation.PopToRoot();
+                    Navigation.GoBack();
                 }
             }
         }

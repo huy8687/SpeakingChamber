@@ -29,23 +29,27 @@ namespace SpeakingChamber.ViewModel
             Navigation.PopToRoot();
         });
 
+        private bool _uploaded;
+
         public override async Task Appearing()
         {
-            this.Log("Appearing Start");
             await base.Appearing();
-            ShowSaving = Visibility.Visible;
-            await Task.Run(() => PushFileToNetwork()).ContinueWith((task) =>
+            if (!_uploaded)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                ShowSaving = Visibility.Visible;
+                await Task.Run(() => PushFileToNetwork()).ContinueWith((task) =>
                 {
-                    if (task.Exception != null)
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        MessageBox.Show("Cannot upload files to network path. Your files are saved in local path.");
-                    }
-                    ShowSaving = Visibility.Hidden;
+                        if (task.Exception != null)
+                        {
+                            MessageBox.Show("Cannot upload files to network path. Your files are saved in local path.");
+                        }
+                        ShowSaving = Visibility.Hidden;
+                    });
                 });
-            });
-            this.Log("Appearing End");
+            }
+            _uploaded = true;
         }
 
         private void PushFileToNetwork()
