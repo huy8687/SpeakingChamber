@@ -11,6 +11,7 @@ using System.Windows.Input;
 using SpeakingChamber.Pages;
 using System.Globalization;
 using NAudio.Lame;
+using SpeakingChamber.Extension;
 
 namespace SpeakingChamber.ViewModel
 {
@@ -41,8 +42,10 @@ namespace SpeakingChamber.ViewModel
 
         public ICommand CmdContinue => new Command(() =>
         {
+            this.Log("CmdContinue Start");
             StopRecord();
             NextQuestion();
+            this.Log("CmdContinue End");
         });
 
         private readonly DispatcherTimer _timer = new DispatcherTimer();
@@ -87,6 +90,7 @@ namespace SpeakingChamber.ViewModel
 
         public override async Task Disappearing()
         {
+            this.Log("Disappearing Start");
             await base.Disappearing();
             StopRecord();
             _timer.Stop();
@@ -97,6 +101,7 @@ namespace SpeakingChamber.ViewModel
             _videoView.MediaEnded -= _videoView_MediaEnded;
             _parts = null;
             _questions = null;
+            this.Log("Disappearing End");
         }
 
         public void OnCurPartChanged()
@@ -147,6 +152,7 @@ namespace SpeakingChamber.ViewModel
 
         private void NextQuestion()
         {
+            this.Log("NextQuestion Start");
             if (_questions != null && _questions.Count > 0)
                 CurQuestion = _questions.Dequeue();
             else
@@ -165,6 +171,7 @@ namespace SpeakingChamber.ViewModel
                         Navigation.Navigate(new TestFinishingPage());
                 }
             }
+            this.Log("NextQuestion End");
         }
 
         private void _videoView_MediaOpened(object sender, RoutedEventArgs e)

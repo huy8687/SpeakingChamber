@@ -31,11 +31,12 @@ namespace SpeakingChamber.ViewModel
 
         public override async Task Appearing()
         {
+            this.Log("Appearing Start");
             await base.Appearing();
             ShowSaving = Visibility.Visible;
             await Task.Run(() => PushFileToNetwork()).ContinueWith((task) =>
             {
-                App.Current.Dispatcher.Invoke(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     if (task.Exception != null)
                     {
@@ -44,10 +45,12 @@ namespace SpeakingChamber.ViewModel
                     ShowSaving = Visibility.Hidden;
                 });
             });
+            this.Log("Appearing End");
         }
 
         private void PushFileToNetwork()
         {
+            this.Log("PushFileToNetwork Start");
             if (!Utils.CheckPath(DataMaster.Setting.UserLocalPath) || !Utils.CheckPath(DataMaster.Setting.NetworkPath))
             {
                 return;
@@ -75,6 +78,7 @@ namespace SpeakingChamber.ViewModel
 
                 DataMaster.SaveCurrentTestFile(diNetwork.FullName);
             }
+            this.Log("PushFileToNetwork End");
         }
     }
 }

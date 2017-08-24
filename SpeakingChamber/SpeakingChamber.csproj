@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Extension\EnumerableExtensions.cs" />
     <Compile Include="Extension\NavigationExtensions.cs" />
+    <Compile Include="Extension\ObjectExtensions.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\Part.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Pages\UserLoginPage.xaml.cs">
       <DependentUpon>UserLoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Domain\Review\BaseReviewState.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
