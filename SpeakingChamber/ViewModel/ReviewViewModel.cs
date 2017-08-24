@@ -79,7 +79,10 @@ namespace SpeakingChamber.ViewModel
                 if (_parts != null && _parts.Count > 0)
                     CurPart = _parts.Dequeue();
                 else
+                {
+                    State = null;
                     Navigation.PopToRoot();
+                }
             }
         }
 
