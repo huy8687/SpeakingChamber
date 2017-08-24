@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <controls:MyTextBlock Grid.Row="0" Text="Instruction" Margin="30,0,0,0"/>
+        <controls:MyTextBlock Grid.Row="0" Text="Instruction" Margin="30,0,0,0" FontSize="42"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -34,7 +34,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <controls:MyTextBlock Grid.Row="0" Grid.Column="0" Margin="0,20,0,0" Text="If this is the first time you use Excel Speaking Chamber, you're recommended to see an instrctional video"/>
+                <controls:MyTextBlock Grid.Row="0" Grid.Column="0" Margin="0,20,0,0" Text="If this is the first time you use Excel Speaking Chamber, you're recommended to see an instructional video"/>
                 <controls:MyButton Grid.Row="0" Grid.Column="1" Margin="20,20,0,0" Text="Click here" Command="{Binding CmdStart}"/>
                 <controls:MyTextBlock Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Text="Or, if you want, you can skip the instrctional video to start testing immediately"/>
                 <controls:MyButton  Grid.Row="1" Grid.Column="1" Margin="20,20,0,0" Text="Skip instruction" Command="{Binding CmdSkipInstruction}"/>
