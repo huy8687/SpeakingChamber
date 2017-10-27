@@ -10,7 +10,7 @@
       Title="StartExamPage">
 
     <StackPanel>
-        <Image Width="275" Source="/SpeakingChamber;component/Resources/2.png" Stretch="UniformToFill"/>
+        <Image Width="350" Source="/SpeakingChamber;component/Resources/2.png" Stretch="UniformToFill"/>
         <control:MyTextBlock FontFamily="{StaticResource Majalla}" HorizontalAlignment="Center" Text="IELTS SPEAKING MOCK EXAM" Margin="0,40,0,0" FontSize="48"/>
         <control:MyTextBlock FontFamily="{StaticResource Majalla}" HorizontalAlignment="Center" Text="{Binding DecoCode}" Margin="30" FontSize="31"/>
         <control:MyTextBlock FontFamily="{StaticResource Majalla}" HorizontalAlignment="Center" Text="{Binding DecoName}" FontSize="31"/>

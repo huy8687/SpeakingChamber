@@ -169,7 +169,7 @@
         </Style>
     </local:BasePage.Resources>
     <StackPanel HorizontalAlignment="Center">
-        <Image Width="150" Source="/SpeakingChamber;component/Resources/6.png" Stretch="UniformToFill"/>
+        <Image Width="350" Source="/SpeakingChamber;component/Resources/6.png" Stretch="UniformToFill"/>
         <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Image Width="20" Source="/SpeakingChamber;component/Resources/5.png" Stretch="Uniform"/>
             <control:MyTextBlock Margin="15,0,0,0" Text="Speaking Chamber" FontSize="21" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SVNAndrogyne}"/>
