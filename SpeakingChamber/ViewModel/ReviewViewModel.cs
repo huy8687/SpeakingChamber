@@ -98,7 +98,7 @@ namespace SpeakingChamber.ViewModel
         public void OnCurQuestionChanged()
         {
             if (CurQuestion != null)
-                if (!string.IsNullOrWhiteSpace(CurQuestion.Video) && File.Exists(CurQuestion.Video))
+                if (DataMaster.Setting.IsReplayVideo && !string.IsNullOrWhiteSpace(CurQuestion.Video) && File.Exists(CurQuestion.Video))
                     State = new ReviewVideoState(this, _videoView);
                 else
                     State = new ReviewQuestionState(this);

@@ -100,11 +100,12 @@ namespace SpeakingChamber.Model
             }
         }
 
-        public static bool SaveSetting(string onlineURL, string localPath, string networkPath)
+        public static bool SaveSetting(string onlineURL, string localPath, string networkPath, bool isReplayVideo)
         {
             Setting.OnlineUrl = onlineURL;
             Setting.LocalPath = localPath;
             Setting.NetworkPath = networkPath;
+            Setting.IsReplayVideo = isReplayVideo;
             return SaveSetting();
         }
 

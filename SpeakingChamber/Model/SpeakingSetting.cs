@@ -18,6 +18,8 @@ namespace SpeakingChamber.Model
         public int? DevNumber { get; set; }
         [XmlElement("micchanel")]
         public int? MicChanel { get; set; }
+        [XmlElement("isreplayvideo")]
+        public bool IsReplayVideo { get; set; }
 
         [XmlIgnore]
         public string UserLocalPath => Path.Combine(LocalPath, DataMaster.UserNamePath + "_" + DataMaster.UserDobPath, DateTime.Now.ToString("yyyyMMdd"));

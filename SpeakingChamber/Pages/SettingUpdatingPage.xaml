@@ -26,6 +26,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
                 <control:MyTextBlock Text="Number of tests database:"/>
@@ -44,8 +45,11 @@
             <TextBox Grid.Row="4" Margin="0,30,0,0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding NetworkPath}" Style="{StaticResource MyTextBoxStyle}"/>
             <control:MyTextBlock Margin="0,-5,0,30"  Grid.Row="5" Grid.Column="0" Text="To save recorded file" FontSize="12"/>
 
-            <control:MyTextBlock Visibility="{Binding VisibleInputSource}" Margin="0,0,0,30" Grid.Row="6" Grid.Column="0" Text="Microphone:"  VerticalAlignment="Center"/>
-            <ListBox Grid.Row="6" Margin="0,0,0,30" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">
+            <control:MyTextBlock Grid.Row="6" Grid.Column="0" Text="Replay questions' video: " FontSize="17" VerticalAlignment="Center"/>
+            <CheckBox IsChecked="{Binding IsReplayVideo}" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+            <control:MyTextBlock Visibility="{Binding VisibleInputSource}" Margin="0,0,0,30" Grid.Row="7" Grid.Column="0" Text="Microphone:"  VerticalAlignment="Center"/>
+            <ListBox Grid.Row="7" Margin="0,0,0,30" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding InputSources}" Visibility="{Binding VisibleInputSource}" SelectedItem="{Binding SelectedInput,Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding ProductName}"/>
@@ -53,8 +57,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <control:MyButton Grid.Row="7" Grid.Column="1" Text="Save Settings" Command="{Binding CmdSave}" HorizontalContentAlignment="Center" Margin="0,0,20,0"/>
-            <control:MyButton Grid.Row="7" Grid.Column="2" Text="Cancel" Command="{Binding CmdCancel}"/>
+            <control:MyButton Grid.Row="8" Grid.Column="1" Text="Save Settings" Command="{Binding CmdSave}" HorizontalContentAlignment="Center" Margin="0,0,20,0"/>
+            <control:MyButton Grid.Row="8" Grid.Column="2" Text="Cancel" Command="{Binding CmdCancel}"/>
         </Grid>
     </StackPanel>
 </local:BasePage>

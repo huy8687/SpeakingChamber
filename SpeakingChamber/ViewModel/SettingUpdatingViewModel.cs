@@ -15,6 +15,7 @@ namespace SpeakingChamber.ViewModel
         public string OnlineURL { get; set; } = DataMaster.Setting.OnlineUrl;
         public string LocalPath { get; set; } = DataMaster.Setting.LocalPath;
         public string NetworkPath { get; set; } = DataMaster.Setting.NetworkPath;
+        public bool IsReplayVideo { get; set; } = DataMaster.Setting.IsReplayVideo;
 
         public ICommand CmdImport => new Command(() =>
         {
@@ -51,7 +52,7 @@ namespace SpeakingChamber.ViewModel
                 MessageBox.Show("NetworkPath is not correct");
                 return;
             }
-            if (DataMaster.SaveSetting(OnlineURL, LocalPath, NetworkPath))
+            if (DataMaster.SaveSetting(OnlineURL, LocalPath, NetworkPath, IsReplayVideo))
             {
                 MessageBox.Show("Succesfully apply your settings..");
                 Navigation.PopToRoot();
